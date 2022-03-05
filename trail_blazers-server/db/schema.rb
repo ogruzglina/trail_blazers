@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_193227) do
+ActiveRecord::Schema.define(version: 2022_03_05_071141) do
 
   create_table "hikers", force: :cascade do |t|
     t.string "name"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2022_03_04_193227) do
     t.string "comment"
     t.integer "hiker_id"
     t.integer "trail_id"
-    t.date "created_date"
-    t.date "updated_date"
+    t.datetime "created_date"
+    t.datetime "updated_date"
   end
 
   create_table "trails", force: :cascade do |t|
