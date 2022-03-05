@@ -66,8 +66,7 @@ reviews = [
 
     hiker_id = rand(1..n_hikers)
     trail_id = rand(1..n_trails)
-    created_date = Faker::Date.birthday(min_age: 0, max_age: 10)
-    Review.create(rating: rating, comment: comment, hiker_id: hiker_id, trail_id: trail_id, created_date: created_date, updated_date: nil)
+    Review.create(rating: rating, comment: comment, hiker_id: hiker_id, trail_id: trail_id)
 end
 
 puts "Seeding done!"
