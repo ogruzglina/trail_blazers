@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_06_233538) do
+ActiveRecord::Schema.define(version: 2022_03_06_234723) do
 
   create_table "hikers", force: :cascade do |t|
     t.string "name"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_03_06_233538) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string "rating"
+    t.integer "rating"
     t.string "comment"
     t.integer "hiker_id"
     t.integer "trail_id"
