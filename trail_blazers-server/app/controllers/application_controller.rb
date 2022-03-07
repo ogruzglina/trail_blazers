@@ -15,9 +15,11 @@ class ApplicationController < Sinatra::Base
     result.to_json
   end
 
-  get "/reviews" do
-    reviews = Review.all    
-    reviews.to_json
+  get "/reviews/:id" do
+    trail = Trail.find_by(id: params[:id])
+    t_reviews = trail.trail_reviews
+    
+    t_reviews.to_json
   end
 
   get "/hikers" do
