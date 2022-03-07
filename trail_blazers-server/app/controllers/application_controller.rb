@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
     trails.each do |trail|
       trail_count = trail.trail_count_reviews
       trail_rating = trail.trail_avg_rating
-      trails_count_and_rating << {count: trail_count, avg_review: trail_rating}
+      trails_count_and_rating << {trail_id: trail.id, count: trail_count, avg_review: trail_rating}
     end
 
     result = {trails: trails, rating: trails_count_and_rating}
@@ -16,7 +16,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/reviews" do
-    reviews = Review.all
+    reviews = Review.all    
     reviews.to_json
   end
 
