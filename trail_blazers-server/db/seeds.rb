@@ -6,20 +6,38 @@ Trail.destroy_all
 Review.destroy_all
 
 puts "Creating hikers..."
-n_hikers = 15 # if you want to change an amount of records for any of the tables tell me and I can redo
+n_hikers = 5
 
 n_hikers.times do
-    name = Faker::Name.name
+    gender = ['men', 'women'].sample
+    name = gender == 'male' ? Faker::Name.male_first_name : Faker::Name.female_first_name
+    last_name = Faker::Name.last_name
+    picture = "https://randomuser.me/api/portraits/thumb/#{ gender }/#{ rand(1..70) }.jpg" 
     location = Faker::Address.full_address
-    picture = "" # These will be peoples avatars, I'd assume most of them aren't going to be uploading one. 
-    # They also have to be a URL format because of the way the database is structed.
-    Hiker.create(name: name, picture: picture, location: location)
-end
+    Hiker.create(name: "#{ name } #{ last_name }", picture: picture, location: location)
+end 
+puts "Hikers done" 
 
 puts "Creating trails..."
-parks = ["Black Rock Forest", "Teatown Lake Reservation", "Alley Pond Park", "Penn State Forest", "Umpqua Natilonal Forest", "Catskill Park", "Mount Rainier National Park", "Badlands National Park", "Lake Clark National Park & Preserve", "Bryce Canyon National Park"]
-trails = ["Peekaboo Loop Trail", "Fairyland Loop Trail", "The Watchman Trail", "Creek Trail", "Great Head Trail", "Jordan Pond Path", "Compass Rock", "Devil's Path", "Eagle Mountain", "Hunter Road Trail"]
-n_trails = 10
+parks = ["Black Rock Forest", "Teatown Lake Reservation", "Alley Pond Park", "Penn State Forest", "Umpqua Natilonal Forest", "Catskill Park", 
+    "Mount Rainier National Park", "Badlands National Park", "Lake Clark National Park & Preserve", "Bryce Canyon National Park", "Rio Grande Nature Center State Park", 
+    "Hyde Memorial State Park", "Cerrillos Hills State Park", "White Sands National Park", "Schmidts Woods Park", "Harriman State Park", "Hickory Run State Park", 
+    "Tuscarora State Forest", "Buchanan State Forest", "Sleepy Creek Wildlife Management Area"]
+trails = ["Peekaboo Trail", "Fairyland Trail", "The Watchman Trail", "Creek Trail", "Great Head Trail", "Jordan Pond Path", "Compass Rock", "Devil's Path", 
+    "Eagle Mountain", "Hunter Road Trail", "Rio Grande Nature Trail", "Borrego Trail", "Hills Trail", "Alkali Flat Trail", "Playa Trail", "Mill Creek Marsh Trail",
+    "Hemlock Trail Head", "Beacon Trail", "Shockeys Knob Trailhead", "Central Trail"]
+photos = ["https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_600,q_50,w_740/v1/clients/virginiabeachva/144_3_2283_jpeg_2af5fb02-5a69-4104-8670-15a4bbfaee3d.jpg", 
+    "https://www.thurstontalk.com/wp-content/uploads/2020/05/Millersylvania-State-Park-Thurston-County-Hiking-scaled.jpg", 
+    "https://dsqeev865ph38.cloudfront.net/media/original_images/off-shakamak-state-park-in.jpg", 
+    "https://www2.illinois.gov/dnr/RotatorImages/360600/Matthiessen.3681.C.360600.jpg", 
+    "https://i.insider.com/5db07749045a31009a7b0b22?width=700", "https://tnstateparks.com/assets/images/content-images/social-media-images/david-crockett.jpg", 
+    "https://365atlantatraveler.com/wp-content/uploads/2014/08/DSC_0128-5.jpg", 
+    "https://www.alapark.com/sites/default/files/styles/default/public/2018-05/cheaha_lake_pier.jpg?itok=RpsbRr0i", 
+    "https://img1.10bestmedia.com/Images/Photos/382049/GettyImages-507252540_54_990x660.jpg", 
+    "https://media.istockphoto.com/photos/american-desert-sunset-with-cacti-and-mountain-picture-id497274553?k=20&m=497274553&s=612x612&w=0&h=CkrYllBaHCU-WpcMslkhUwvvLbaitvoBkDbkQ7RhMec=", 
+    "https://travelnevada.com/wp-content/uploads/2014/04/VOF_Desktop.jpg"]
+attractions = ["Waterfall", "Wildflowers", "Wood", "Scenic View", "Lake", "Historic Feature", "Bridge", "Clifs", "Wild Animals", "Cave", "Mountain", "River", "Overlook", nil]
+n_trails = 20
 
 n_trails.times do
     park = parks.sample
@@ -28,12 +46,18 @@ n_trails.times do
     trail = trails.sample
     trails = trails.select {|t| t != trail}
 
-    park_location = "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state_abbr} #{Faker::Address.zip}, USA"
+    park_location = "#{ Faker::Address.street_address }, #{ Faker::Address.city }, #{ Faker::Address.state_abbr } #{ Faker::Address.zip }, USA"
     difficulty = ['easy', 'moderate', 'hard'].sample
-    duration = rand(0.1..22).to_f.round(2) # or we can do string and then -> "#{rand(0.1..22).to_f.round(2)} mi" or add "mi" at code during displaying
-    attraction = nil # what do you want to show here?
-    Trail.create(park_name: park, trail_name: trail, location: park_location, difficulty: difficulty, duration: duration, attraction: attraction)
+    duration = rand(0.1..22).to_f.round(2) 
+    attraction = attractions.sample
+    trail_type = ['Loop', 'Out & back', 'Point to point'].sample
+    
+    trail_photo = photos.sample
+    photos = photos.select {|p| p != trail_photo}
+
+    Trail.create(park_name: park, trail_name: trail, location: park_location, difficulty: difficulty, duration: duration, attraction: attraction, trail_type: trail_type)
 end
+puts "Trails done..."
 
 puts "Creating reviews..."
 reviews = [
@@ -53,21 +77,26 @@ reviews = [
     {rating: 4, comment: "Nice hike. Signage is pretty confusing, but very enjoyable area."},
     {rating: 5, comment: "Great trails. Make sure you have a map."},
     {rating: 5, comment: "One of my favorite park's to go for a walk in."},
-    {rating: 5, comment: nil}, # I did two exemples when user can leave only raiting, unless you don't want to allow this, I mean if it's required to fill out
+    {rating: 5, comment: nil}, 
     {rating: 4, comment: nil},
     {rating: 3, comment: "Great walking"},
-    {rating: 1, comment: "Rocks and dirt and bugs, eww"}
+    {rating: 1, comment: "Rocks and dirt and bugs, eww"},
+    {rating: 3, comment: nil}, 
+    {rating: 2, comment: nil},
+    {rating: 3, comment: "These directions were so very helpful and accurate. We had a good hike; remember tick protection because there are some grassy areas. We used picardin and seem to have come.back clean. Thanks for these fantastic directions and cues!"},
+    {rating: 1, comment: nil},
+    {rating: 3, comment: "Lost cell reception before we made it to the parking area so a hard copy/offline map is a good idea"}
 ]
 
-20.times do
+25.times do
     r = reviews.sample
     rating = r.values[0]
     comment =r.values[1]
     reviews = reviews.select {|review| review != r}
-
     hiker_id = rand(1..n_hikers)
     trail_id = rand(1..n_trails)
     Review.create(rating: rating, comment: comment, hiker_id: hiker_id, trail_id: trail_id)
 end
+puts "Reviews done"
 
 puts "Seeding done!"
