@@ -1,9 +1,6 @@
 puts "Start seeding"
 
-puts "Deleting old data..."
-Hiker.destroy_all
-Trail.destroy_all
-Review.destroy_all
+# Run rake db:reset in console instead of rake db:seed
 
 puts "Creating hikers..."
 n_hikers = 5
@@ -42,7 +39,8 @@ photos = ["https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_600
     "https://www.region18.org/uploaded/faculty/ltraver/Dylan/trail.jpg", 
     "https://www.turkeyrunstatepark.com/wp-content/uploads/2020/10/rocky_hollow2.jpg", 
     "https://d2exd72xrrp1s7.cloudfront.net/www/guide/31731/1FCrga?width=800&height=560&crop=true&q=40", 
-    "https://www.planetware.com/photos-large/USMN/minnesota-jay-cooke-state-park-silver-creek-trail-st-louis-river.jpg"]
+    "https://www.planetware.com/photos-large/USMN/minnesota-jay-cooke-state-park-silver-creek-trail-st-louis-river.jpg",
+    "https://cdn.securem2.com//commonimages/pages/2021/8/mountainrangefall.jpg"]
 attractions = ["Waterfall", "Wildflowers", "Wood", "Scenic View", "Lake", "Historic Feature", "Bridge", "Clifs", "Wild Animals", "Cave", "Mountain", "River", "Overlook", nil]
 n_trails = 20
 
