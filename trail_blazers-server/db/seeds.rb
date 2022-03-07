@@ -10,7 +10,7 @@ n_hikers = 5
 
 n_hikers.times do
     gender = ['men', 'women'].sample
-    name = gender == 'male' ? Faker::Name.male_first_name : Faker::Name.female_first_name
+    name = gender == 'men' ? Faker::Name.male_first_name : Faker::Name.female_first_name
     last_name = Faker::Name.last_name
     picture = "https://randomuser.me/api/portraits/thumb/#{ gender }/#{ rand(1..70) }.jpg" 
     location = Faker::Address.full_address
@@ -35,7 +35,14 @@ photos = ["https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_600
     "https://www.alapark.com/sites/default/files/styles/default/public/2018-05/cheaha_lake_pier.jpg?itok=RpsbRr0i", 
     "https://img1.10bestmedia.com/Images/Photos/382049/GettyImages-507252540_54_990x660.jpg", 
     "https://media.istockphoto.com/photos/american-desert-sunset-with-cacti-and-mountain-picture-id497274553?k=20&m=497274553&s=612x612&w=0&h=CkrYllBaHCU-WpcMslkhUwvvLbaitvoBkDbkQ7RhMec=", 
-    "https://travelnevada.com/wp-content/uploads/2014/04/VOF_Desktop.jpg"]
+    "https://travelnevada.com/wp-content/uploads/2014/04/VOF_Desktop.jpg", "https://travel.home.sndimg.com/content/dam/images/travel/fullset/2012/08/24/a0/us-hiking-trails_ss_001.rend.hgtvcom.966.725.suffix/1491580965291.jpeg", 
+    "https://cdn.vox-cdn.com/thumbor/fu9OVyTJgkgEJ0uJWQj6JI17cUA=/0x430:6000x3571/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/19370217/shutterstock_1356281234.jpg", 
+    "https://static.onecms.io/wp-content/uploads/sites/28/2020/07/10/yosemite-national-park-falls-trail-CALIHIKES0720.jpg", 
+    "https://d3qvqlc701gzhm.cloudfront.net/thumbs/d42bcc88960e7d101ea038afc049c2624f7ae7ac06541183b174f54c68bdcbd8-750.jpg", 
+    "https://www.region18.org/uploaded/faculty/ltraver/Dylan/trail.jpg", 
+    "https://www.turkeyrunstatepark.com/wp-content/uploads/2020/10/rocky_hollow2.jpg", 
+    "https://d2exd72xrrp1s7.cloudfront.net/www/guide/31731/1FCrga?width=800&height=560&crop=true&q=40", 
+    "https://www.planetware.com/photos-large/USMN/minnesota-jay-cooke-state-park-silver-creek-trail-st-louis-river.jpg", nil]
 attractions = ["Waterfall", "Wildflowers", "Wood", "Scenic View", "Lake", "Historic Feature", "Bridge", "Clifs", "Wild Animals", "Cave", "Mountain", "River", "Overlook", nil]
 n_trails = 20
 
@@ -52,10 +59,10 @@ n_trails.times do
     attraction = attractions.sample
     trail_type = ['Loop', 'Out & back', 'Point to point'].sample
     
-    trail_photo = photos.sample
-    photos = photos.select {|p| p != trail_photo}
+    trail_picture = photos.sample
+    photos = photos.select {|p| p != trail_picture}
 
-    Trail.create(park_name: park, trail_name: trail, location: park_location, difficulty: difficulty, duration: duration, attraction: attraction, trail_type: trail_type)
+    Trail.create(park_name: park, trail_name: trail, location: park_location, difficulty: difficulty, duration: duration, attraction: attraction, trail_type: trail_type, trail_picture: trail_picture)
 end
 puts "Trails done..."
 
