@@ -3,7 +3,16 @@ class ApplicationController < Sinatra::Base
 
   get "/trails" do
     trails = Trail.all
-    trails.to_json
+    trails_count_and_rating = []
+
+    trails.each do |trail|
+      trail_count = trail.trail_count_reviews
+      trail_rating = trail.trail_avg_rating
+      trails_count_and_rating << {count: trail_count, avg_review: trail_rating}
+    end
+
+    result = {trails: trails, rating: trails_count_and_rating}
+    result.to_json
   end
 
   get "/reviews" do
