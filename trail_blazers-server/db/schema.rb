@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_07_000250) do
+ActiveRecord::Schema.define(version: 2022_03_07_002933) do
 
   create_table "hikers", force: :cascade do |t|
     t.string "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2022_03_07_000250) do
     t.string "difficulty"
     t.integer "duration"
     t.string "attraction"
+    t.string "trail_type"
   end
 
 end
