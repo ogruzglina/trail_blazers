@@ -42,7 +42,7 @@ photos = ["https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_600
     "https://www.region18.org/uploaded/faculty/ltraver/Dylan/trail.jpg", 
     "https://www.turkeyrunstatepark.com/wp-content/uploads/2020/10/rocky_hollow2.jpg", 
     "https://d2exd72xrrp1s7.cloudfront.net/www/guide/31731/1FCrga?width=800&height=560&crop=true&q=40", 
-    "https://www.planetware.com/photos-large/USMN/minnesota-jay-cooke-state-park-silver-creek-trail-st-louis-river.jpg", nil]
+    "https://www.planetware.com/photos-large/USMN/minnesota-jay-cooke-state-park-silver-creek-trail-st-louis-river.jpg"]
 attractions = ["Waterfall", "Wildflowers", "Wood", "Scenic View", "Lake", "Historic Feature", "Bridge", "Clifs", "Wild Animals", "Cave", "Mountain", "River", "Overlook", nil]
 n_trails = 20
 
