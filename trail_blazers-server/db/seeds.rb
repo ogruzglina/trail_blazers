@@ -10,9 +10,10 @@ n_hikers = 15 # if you want to change an amount of records for any of the tables
 
 n_hikers.times do
     name = Faker::Name.name
-    age = rand(16..60) #do we need age? mayby avatar instead?
-    location = Faker::Address.full_address 
-    Hiker.create(name: name, age: age, location: location)
+    location = Faker::Address.full_address
+    picture = "" # These will be peoples avatars, I'd assume most of them aren't going to be uploading one. 
+    # They also have to be a URL format because of the way the database is structed.
+    Hiker.create(name: name, picture: picture, location: location)
 end
 
 puts "Creating trails..."
