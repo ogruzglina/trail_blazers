@@ -1,5 +1,5 @@
 function Tile() {
-    return ("")
+    return (<h1>Cards here</h1>)
 }
 
 export default Tile
