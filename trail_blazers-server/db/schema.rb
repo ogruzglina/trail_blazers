@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_06_234723) do
+ActiveRecord::Schema.define(version: 2022_03_07_000250) do
 
   create_table "hikers", force: :cascade do |t|
     t.string "name"
-    t.integer "age"
     t.string "location"
+    t.string "picture"
   end
 
   create_table "reviews", force: :cascade do |t|
