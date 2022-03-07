@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
     result.to_json
   end
 
-  get "/reviews/:id" do
+  get "/reviews/:id" do #this's trail_id not review.id
     trail = Trail.find_by(id: params[:id])
     t_reviews = trail.trail_reviews
     
