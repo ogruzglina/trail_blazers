@@ -1,12 +1,19 @@
-import react from "react"
 import { Route, Switch } from "react-router-dom"
 import Home from "./Home"
+import Review from "./Review"
+import SavedTrails from "./SavedTrails"
 
 function App() {
   return (
     <Switch>
-      <Route path="/">
+      <Route exact path="/">
         <Home />
+      </Route>
+      <Route path="/review">
+        <Review />
+      </Route>
+      <Route path="/saved_trails">
+        <SavedTrails />
       </Route>
     </Switch>
   )
