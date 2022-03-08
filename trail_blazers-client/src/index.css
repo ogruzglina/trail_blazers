@@ -1,0 +1,22 @@
+.carousel {
+    z-index: -1;
+    transform: translate(0%, -15%);
+    height: 500px !important;
+}
+
+.searchbar-container{
+    z-index: 1;
+    transform: translate(0%, 200%);
+}
+
+.searchbar-heading {
+    z-index: 1;
+    transform: translate(0%, 275%);
+    color: white;
+    font-weight: "strong";
+    font-size: 36pt;
+}
+
+.tile-container {
+    text-align: center;
+}
