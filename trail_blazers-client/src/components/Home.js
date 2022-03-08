@@ -47,12 +47,9 @@ function Home() {
                         </div>
                     </Carousel>
                 </div>
-
-
             </div>
-            <div className="tile-container">
-                <h1>Tiles here</h1>
-                {/* {tiles} */}
+            <div>
+                <Tile />
             </div>
         </div>
     )
