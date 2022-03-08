@@ -15,12 +15,12 @@ class ApplicationController < Sinatra::Base
     result.to_json
   end
 
-  get "/reviews/:trail_id" do 
-    trail = Trail.find_by(id: params[:trail_id])
-    t_reviews = trail.trail_reviews
+  # get "/reviews/:trail_id" do 
+  #   trail = Trail.find_by(id: params[:trail_id])
+  #   t_reviews = trail.trail_reviews
     
-    t_reviews.to_json
-  end
+  #   t_reviews.to_json
+  # end
 
   get "/hikers/:trail_id" do 
     trail = Trail.find_by(id: params[:trail_id])
@@ -32,4 +32,29 @@ class ApplicationController < Sinatra::Base
     trail_hikers = {trail_id: trail.id, hikers: hikers}
     trail_hikers.to_json
   end
+
+  get "/reviews/:sort_or_trail_id" do
+    type = params[:sort_or_trail_id]
+    type.to_json
+    sorted_reviews = []
+
+    if type.length >= 6
+      case type
+      when "newest"
+        sorted_reviews = Review.all.order(created_at: :desc)
+      when "oldest"
+        sorted_reviews = Review.all.order(created_at: :asc)
+      when "highest"
+        sorted_reviews = Review.all.order(rating: :desc)
+      when "lowest"
+        sorted_reviews = Review.all.order(rating: :asc)
+      end
+      sorted_reviews.to_json
+    else
+      trail = Trail.find_by(id: type)
+      t_reviews = trail.trail_reviews
+      t_reviews.to_json
+    end
+  end
+
 end
