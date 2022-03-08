@@ -1,8 +1,17 @@
+import { Link } from "react-router-dom"
+import Navbar from "react-bootstrap/Navbar"
+import Container from "react-bootstrap/Container"
+
 function SavedTrails() {
     return (
-        <h1>
-            Saved trails here
-        </h1>
+        <Navbar>
+            <Container>
+                <Link to="/">
+                    Home
+                </Link>
+            </Container>
+        </Navbar>
+        
     )
 }
 
