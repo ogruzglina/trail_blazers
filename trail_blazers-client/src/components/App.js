@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router-dom"
 import Home from "./Home"
-import Review from "./Review"
+import ReviewPage from "./ReviewPage"
 import SavedTrails from "./SavedTrails"
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
         <Home />
       </Route>
       <Route path="/review">
-        <Review />
+        <ReviewPage />
       </Route>
       <Route path="/saved_trails">
         <SavedTrails />
