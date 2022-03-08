@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
 
   get "/hikers/:trail_id" do
     trail_id = params[:trail_id]
-    reviews = Trail.trail_reviews(id: trail_id)
+    reviews = Trail.trail_reviews(trail_id)
   
     hikers_id = reviews.map {|review| review.hiker_id}.uniq
     hikers = hikers_id.map {|hiker_id| Hiker.find(hiker_id)}
@@ -31,7 +31,7 @@ class ApplicationController < Sinatra::Base
     trail_id = params[:trail_id]
     sorted_reviews = []
 
-    t_reviews = Trail.trail_reviews(id: trail_id)
+    t_reviews = Trail.trail_reviews(trail_id)
 
     if sort == nil 
       t_reviews.to_json
