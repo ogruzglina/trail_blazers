@@ -94,7 +94,7 @@ function ReviewPage() {
                     <Navbar style={{ backgroundColor: "lightgray" }}>
                         <Container>
                             <Navbar.Brand>
-                                <b>Reviews (312)</b>
+                                <b>Reviews (number of all reviews)</b>
                             </Navbar.Brand>
                         </Container>
                     </Navbar>
@@ -102,21 +102,35 @@ function ReviewPage() {
                 <div style={{ paddingRight: "15px", paddingLeft: "225px", paddingTop: "20px" }}>
                     <div className="row align-items-start">
                         <div className="col">
-                            <div>
-                                5 stars
-                            </div>
-                            <div>
-                                4 stars
-                            </div>
-                            <div>
-                                3 stars
-                            </div>
-                            <div>
-                                2 stars
-                            </div>
-                            <div>
-                                1 stars
-                            </div>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><img src="https://cdn-assets.alltrails.com/assets/packs/4a246cfd4f990e265e1e.svg" alt="star" /></td>
+                                        <td>count</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><img src="https://cdn-assets.alltrails.com/assets/packs/4a246cfd4f990e265e1e.svg" alt="star" /></td>
+                                        <td>count</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><img src="https://cdn-assets.alltrails.com/assets/packs/4a246cfd4f990e265e1e.svg" alt="star" /></td>
+                                        <td>count</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><img src="https://cdn-assets.alltrails.com/assets/packs/4a246cfd4f990e265e1e.svg" alt="star" /></td>
+                                        <td>count</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><img src="https://cdn-assets.alltrails.com/assets/packs/4a246cfd4f990e265e1e.svg" alt="star" /></td>
+                                        <td>count</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             <br />
                             <div>
                                 Sort by: <select>
@@ -141,7 +155,7 @@ function ReviewPage() {
                             >
                                 <Modal.Header closeButton>
                                     <Modal.Title>
-                                        <b>Add a review</b>
+                                        <b>Write a review</b>
                                     </Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body >
