@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col"
 import Card from "react-bootstrap/Card"
 
 
-function Tile({ props }) {
+function Tile({ trailData }) {
     return (
         <div className="tile-container">
             <Row xs={1} md={4} className="g-4">
@@ -16,7 +16,7 @@ function Tile({ props }) {
                                 <Card.Body>
                                     <Card.Title>Card title</Card.Title>
                                     <Card.Text>
-                                        Card body
+                                        {/* {trailData.park_name} */}
                                     </Card.Text>
                                 </Card.Body>
                             </Link>

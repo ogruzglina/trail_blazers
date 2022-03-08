@@ -1,6 +1,7 @@
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import SearchBar from "./SearchBar"
+import TilesList from "./TilesList"
 import Tile from "./Tile"
 import { Link } from "react-router-dom"
 import { Carousel } from 'react-responsive-carousel';
@@ -10,19 +11,28 @@ function Home() {
 
     const [trailData, setTrailData] = useState([])
 
-    useEffect(() => {
+    useEffect(async() => {
         async function fetchData() {
             let request = await fetch("http://localhost:9292/trails")
             let response = await request.json()
             setTrailData(response)
+            console.log(response)
             return response
         }
-        fetchData()
+        await fetchData()
     }, [])
-
+    // console.log(trailData)
     // const tiles = trailData.map(trail => {
     //     return <Tile key={trail.id} trailData={trail} />
     // })
+    // useEffect( () => {
+    //     fetch("http://localhost:9292/trails")
+    //       .then( r => r.json() )
+    //       .then( data => {setTrailData(data) 
+    //         console.log(trailData)})
+    //   }, []);
+
+    //   console.log(trailData.trails)
 
     return (
         <div>
@@ -52,7 +62,7 @@ function Home() {
                 </div>
             </div>
             <div>
-                <Tile />
+                <TilesList trails = { trailData.trails } />
             </div>
         </div>
     )
