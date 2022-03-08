@@ -1,5 +1,5 @@
 class ApplicationController < Sinatra::Base
-  set :default_content_type, "application/json"
+  set :default_content_sort, "application/json"
 
   get "/trails" do
     trails = Trail.all
@@ -15,13 +15,6 @@ class ApplicationController < Sinatra::Base
     result.to_json
   end
 
-  # get "/reviews/:trail_id" do 
-  #   trail = Trail.find_by(id: params[:trail_id])
-  #   t_reviews = trail.trail_reviews
-    
-  #   t_reviews.to_json
-  # end
-
   get "/hikers/:trail_id" do 
     trail = Trail.find_by(id: params[:trail_id])
     reviews = trail.trail_reviews
@@ -33,28 +26,29 @@ class ApplicationController < Sinatra::Base
     trail_hikers.to_json
   end
 
-  get "/reviews/:sort_or_trail_id" do
-    type = params[:sort_or_trail_id]
-    type.to_json
+  get "/reviews/:trail_id/?:sort?" do # ?:sort? -it's an optional parametr
+    sort = params[:sort]
+    trail_id = params[:trail_id]
     sorted_reviews = []
 
-    if type.length >= 6
-      case type
+    trail = Trail.find_by(id: trail_id)
+    t_reviews = trail.trail_reviews
+
+    if sort == nil 
+      t_reviews.to_json
+    else 
+      case sort
       when "newest"
-        sorted_reviews = Review.all.order(created_at: :desc)
+        sorted_reviews = t_reviews.order(created_at: :desc)
       when "oldest"
-        sorted_reviews = Review.all.order(created_at: :asc)
+        sorted_reviews = t_reviews.order(created_at: :asc)
       when "highest"
-        sorted_reviews = Review.all.order(rating: :desc)
+        sorted_reviews = t_reviews.order(rating: :desc)
       when "lowest"
-        sorted_reviews = Review.all.order(rating: :asc)
+        sorted_reviews = t_reviews.order(rating: :asc)
       end
       sorted_reviews.to_json
-    else
-      trail = Trail.find_by(id: type)
-      t_reviews = trail.trail_reviews
-      t_reviews.to_json
     end
   end
-
+  
 end
