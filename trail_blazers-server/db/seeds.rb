@@ -52,15 +52,16 @@ n_trails.times do
     trails = trails.select {|t| t != trail}
 
     park_location = "#{ Faker::Address.street_address }, #{ Faker::Address.city }, #{ Faker::Address.state_abbr } #{ Faker::Address.zip }, USA"
-    difficulty = ['easy', 'moderate', 'hard'].sample
-    duration = rand(0.1..22).to_f.round(2) 
+    difficulty = ['Easy', 'Moderate', 'Hard'].sample
+    length = rand(0.4..22).to_f.round(2)
+    duration = length.ceil*20 
     attraction = attractions.sample
     trail_type = ['Loop', 'Out & back', 'Point to point'].sample
     
     trail_picture = photos.sample
     photos = photos.select {|p| p != trail_picture}
 
-    Trail.create(park_name: park, trail_name: trail, location: park_location, difficulty: difficulty, duration: duration, attraction: attraction, trail_type: trail_type, trail_picture: trail_picture)
+    Trail.create(park_name: park, trail_name: trail, location: park_location, difficulty: difficulty, length: length, duration: duration, attraction: attraction, trail_type: trail_type, trail_picture: trail_picture)
 end
 puts "Trails done..."
 
