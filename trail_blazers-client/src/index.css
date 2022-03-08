@@ -1,3 +1,7 @@
+body {
+    font-family: "Proxima Nova,Arial,sans-serif";
+}
+
 .carousel {
     z-index: -1;
     transform: translate(0%, -15%);
@@ -21,4 +25,8 @@
     text-align: center;
     padding-right: 20px;
     padding-left: 20px;
+}
+
+.text-white {
+    color: white
 }

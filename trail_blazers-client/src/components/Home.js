@@ -1,4 +1,5 @@
 import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
 import SearchBar from "./SearchBar"
 import Tile from "./Tile"
 import { Link } from "react-router-dom"
@@ -26,10 +27,12 @@ function Home() {
     return (
         <div>
             <Navbar bg="light" variant="light">
-                <Link to="/saved_trails">
-                    Saved Trails
-                </Link>
-                <span style={{ margin: "auto" }}><b>Trail Blazers</b></span>
+                <Container>
+                    <Link to="/saved_trails">
+                        Saved Trails
+                    </Link>
+                    <b>Trail Blazers</b>
+                </Container>
             </Navbar>
             <div style={{ textAlign: "center", height: "550px" }}>
                 <h1 className="searchbar-heading">Logo Here</h1>
