@@ -7,19 +7,17 @@ import { useState, useEffect } from "react"
 
 function Home() {
 
-    // const [trailData, setTrailData] = useState([])
+    const [trailData, setTrailData] = useState([])
 
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         let request = await fetch("http://localhost:9292/trails")
-    //         let response = await request.json()
-    //         setTrailData(response)
-    //         return response
-    //     }
-    //     fetchData()
-    // }, [])
-
-
+    useEffect(() => {
+        async function fetchData() {
+            let request = await fetch("http://localhost:9292/trails")
+            let response = await request.json()
+            setTrailData(response)
+            return response
+        }
+        fetchData()
+    }, [])
 
     // const tiles = trailData.map(trail => {
     //     return <Tile key={trail.id} trailData={trail} />
