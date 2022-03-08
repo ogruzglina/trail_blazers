@@ -11,7 +11,7 @@ n_hikers.times do
     last_name = Faker::Name.last_name
     picture = "https://randomuser.me/api/portraits/thumb/#{ gender }/#{ rand(1..70) }.jpg" 
     location = Faker::Address.full_address
-    Hiker.create(name: "#{ name } #{ last_name }", picture: picture, location: location)
+    Hiker.create(name: "#{ name } #{ last_name }", picture: picture)
 end 
 puts "Hikers done" 
 
