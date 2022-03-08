@@ -15,14 +15,14 @@ class ApplicationController < Sinatra::Base
     result.to_json
   end
 
-  get "/hikers/:trail_id" do 
-    trail = Trail.find_by(id: params[:trail_id])
-    reviews = trail.trail_reviews
-
-    hikers_id = reviews.map {|review| review.hiker_id}
+  get "/hikers/:trail_id" do
+    trail_id = params[:trail_id]
+    reviews = Trail.trail_reviews(id: trail_id)
+  
+    hikers_id = reviews.map {|review| review.hiker_id}.uniq
     hikers = hikers_id.map {|hiker_id| Hiker.find(hiker_id)}
-
-    trail_hikers = {trail_id: trail.id, hikers: hikers}
+  
+    trail_hikers = {trail_id: trail_id, hikers: hikers}
     trail_hikers.to_json
   end
 
@@ -31,21 +31,20 @@ class ApplicationController < Sinatra::Base
     trail_id = params[:trail_id]
     sorted_reviews = []
 
-    trail = Trail.find_by(id: trail_id)
-    t_reviews = trail.trail_reviews
+    t_reviews = Trail.trail_reviews(id: trail_id)
 
     if sort == nil 
       t_reviews.to_json
     else 
-      case sort
-      when "newest"
-        sorted_reviews = t_reviews.order(created_at: :desc)
-      when "oldest"
-        sorted_reviews = t_reviews.order(created_at: :asc)
-      when "highest"
-        sorted_reviews = t_reviews.order(rating: :desc)
-      when "lowest"
-        sorted_reviews = t_reviews.order(rating: :asc)
+      sorted_reviews = case sort
+        when "newest"
+          t_reviews.order(created_at: :desc)
+        when "oldest"
+          t_reviews.order(created_at: :asc)
+        when "highest"
+          t_reviews.order(rating: :desc)
+        when "lowest"
+          t_reviews.order(rating: :asc)
       end
       sorted_reviews.to_json
     end
