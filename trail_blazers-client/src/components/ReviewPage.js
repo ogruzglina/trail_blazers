@@ -8,13 +8,18 @@ import Modal from "react-bootstrap/Modal"
 import Container from "react-bootstrap/Container"
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import Review from "./Review"
 
-function Review() {
+function ReviewPage() {
     const [showModal, setShowModal] = useState(false)
     const [name, setName] = useState("")
-    const [avatar, setAvatar] = useState("")
+    const [image, setImage] = useState("")
     const [rating, setRating] = useState("")
     const [comment, setComment] = useState("")
+    const [userName, setUserName] = useState("")
+    const [userImage, setUserImage] = useState("")
+    const [userRating, setUserRating] = useState("")
+    const [userComment, setUserComment] = useState("")
 
 
     function handleClose() {
@@ -23,13 +28,13 @@ function Review() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        const userName = e.target[0].value
-        const userImage = e.target[1].value
-        const userRating = e.target[2].value
-        const userComment = e.target[3].value
+        setUserName(e.target[0].value)
+        setUserImage(e.target[1].value)
+        setUserRating(e.target[2].value)
+        setUserComment(e.target[3].value)
 
         setName("")
-        setAvatar("")
+        setImage("")
         setRating("")
         setComment("")
 
@@ -146,8 +151,8 @@ function Review() {
                                             <Form.Control placeholder="Enter name" onChange={() => setName(name)} required />
                                         </Form.Group>
                                         <Form.Group className="mb-3">
-                                            <Form.Label>Avatar Image</Form.Label>
-                                            <Form.Control placeholder="Enter URL" onChange={() => setAvatar(avatar)} />
+                                            <Form.Label>Image</Form.Label>
+                                            <Form.Control placeholder="Enter URL" onChange={() => setImage(image)} />
                                         </Form.Group>
                                         <Form.Group className="mb-3" >
                                             <Form.Label>Rating</Form.Label>
@@ -171,9 +176,13 @@ function Review() {
                     </div>
                 </div>
                 <div style={{ paddingRight: "200px", paddingLeft: "200px", paddingTop: "20px" }}><hr /></div>
+                <div style={{ paddingRight: "200px", paddingLeft: "200px" }}>
+                    <Review userName={userName} userImage={userImage} userRating={userRating} userComment={userComment} />
+                    <hr />
+                </div>
             </div>
         </div>
     )
 }
 
-export default Review
+export default ReviewPage
