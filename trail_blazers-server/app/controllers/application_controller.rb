@@ -15,15 +15,21 @@ class ApplicationController < Sinatra::Base
     result.to_json
   end
 
-  get "/reviews/:id" do #this's trail_id not review.id
-    trail = Trail.find_by(id: params[:id])
+  get "/reviews/:trail_id" do 
+    trail = Trail.find_by(id: params[:trail_id])
     t_reviews = trail.trail_reviews
     
     t_reviews.to_json
   end
 
-  get "/hikers" do
-    hikers = Hiker.all
-    hikers.to_json
+  get "/hikers/:trail_id" do 
+    trail = Trail.find_by(id: params[:trail_id])
+    reviews = trail.trail_reviews
+
+    hikers_id = reviews.map {|review| review.hiker_id}
+    hikers = hikers_id.map {|hiker_id| Hiker.find(hiker_id)}
+
+    trail_hikers = {trail_id: trail.id, hikers: hikers}
+    trail_hikers.to_json
   end
 end
