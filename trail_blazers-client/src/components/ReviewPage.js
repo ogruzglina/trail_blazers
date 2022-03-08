@@ -81,7 +81,7 @@ function ReviewPage() {
                             <div style={{ fontWeight: "700" }}>2.0 mi</div>
                         </div>
                         <div className="col">
-                            Duration
+                            Estimated Duration
                             <div style={{ fontWeight: "700" }}>2hr 30min</div>
                         </div>
                         <div className="col">
