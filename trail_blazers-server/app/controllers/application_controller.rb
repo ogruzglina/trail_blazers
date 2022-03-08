@@ -49,5 +49,16 @@ class ApplicationController < Sinatra::Base
       sorted_reviews.to_json
     end
   end
+
+  post '/reviews' do
+    review = Review.create(
+      comment: params[:comment],
+      rating: params[:rating],
+      hiker_id: params[:hiker_id],
+      trail_id: params[:trail_id],
+    )
+    review.to_json
+  end
+    
   
 end
