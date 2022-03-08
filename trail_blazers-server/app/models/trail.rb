@@ -2,8 +2,9 @@ class Trail < ActiveRecord::Base
     has_many :reviews
     has_many :hikers, through: :reviews
 
-    def trail_reviews
-        reviews.where(trail_id: self.id)
+    def self.trail_reviews(id)
+        trail = Trail.find_by(id)
+        trail.reviews.where(trail_id: trail.id)
     end
 
     def trail_count_reviews
