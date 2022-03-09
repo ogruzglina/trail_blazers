@@ -10,6 +10,7 @@ function App() {
   const [hikerData, setHikerData] = useState([])
   const [allHikers, setAllHikers] = useState([])
   const [selectedId, setSelectedId] = useState("")
+  const [ search, setSearch ] = useState('');
 
   useEffect(async () => {
     async function fetchData() {
@@ -51,6 +52,19 @@ function App() {
     await fetchData()
   }, [selectedId])
 
+  const trails = trailData.trails;
+  const ratingData = trailData.rating;
+  const filteredTrailsData = {trails: [], rating: []}
+
+  if (!trails) return null
+  filteredTrailsData.trails = trails.filter( trail => 
+    trail.park_name.toLowerCase().includes(search.toLowerCase()) || trail.trail_name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  filteredTrailsData.rating = filteredTrailsData.trails.map( trail => 
+    ratingData.filter( rating => rating.trail_id == trail.id)
+  );
+
   function handlePost(newPost) {
     setReviewData([...reviewData, newPost])
   }
@@ -62,10 +76,10 @@ function App() {
   return (
     <Switch>
       <Route exact path="/">
-        <Home trailData={trailData} />
+        <Home trailData = { filteredTrailsData } onSearch = { setSearch }/>
       </Route>
       <Route path="/review/:id">
-        <ReviewPage trailData={trailData}
+        <ReviewPage trailData = { trailData }
           reviewData={reviewData}
           hikerData={hikerData}
           setSelectedId={setSelectedId}
