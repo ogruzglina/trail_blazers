@@ -43,6 +43,10 @@ function App() {
     ratingData.filter( rating => rating.trail_id == trail.id)
   );
 
+  function handlePost(newPost) {
+    setReviewData([...reviewData, newPost])
+  }
+
   return (
     <Switch>
       <Route exact path = "/">
@@ -53,6 +57,7 @@ function App() {
           trailData = { filteredTrailsData } 
           reviewData = { reviewData } 
           setSelectedId = { setSelectedId } 
+          handlePost = { handlePost }
         />
       </Route>
       <Route path = "/saved_trails">

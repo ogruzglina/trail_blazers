@@ -10,7 +10,7 @@ import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import Review from "./Review"
 
-function ReviewPage({ trailData, reviewData, setSelectedId }) {
+function ReviewPage({ trailData, reviewData, setSelectedId, handlePost }) {
     const [showModal, setShowModal] = useState(false)
     const [name, setName] = useState("")
     const [image, setImage] = useState("")
@@ -18,8 +18,6 @@ function ReviewPage({ trailData, reviewData, setSelectedId }) {
     const [comment, setComment] = useState("")
     const [userName, setUserName] = useState("")
     const [userImage, setUserImage] = useState("")
-    const [userRating, setUserRating] = useState("")
-    const [userComment, setUserComment] = useState("")
 
     const { id } = useParams()
 
@@ -86,8 +84,22 @@ function ReviewPage({ trailData, reviewData, setSelectedId }) {
         e.preventDefault()
         setUserName(e.target[0].value)
         setUserImage(e.target[1].value)
-        setUserRating(e.target[2].value)
-        setUserComment(e.target[3].value)
+
+        fetch(`http://localhost:9292/reviews/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                rating: e.target[2].value,
+                comment: e.target[3].value,
+                hiker_id: "",
+                trail_id: id
+            })
+        })
+            .then(res => res.json())
+            .then(data => handlePost(data))
+
 
         setName("")
         setImage("")
@@ -101,7 +113,7 @@ function ReviewPage({ trailData, reviewData, setSelectedId }) {
             <Navbar>
                 <Container>
                     <Link to="/" style={{ textDecoration: "none", color: "black" }}>Home</Link>
-                    <b style={{fontSize: "24px"}}>Trail Blazers</b>
+                    <b style={{ fontSize: "24px" }}>Trail Blazers</b>
                     <Link to="/saved_trails" style={{ textDecoration: "none", color: "black" }}>
                         Saved Trails
                     </Link>
