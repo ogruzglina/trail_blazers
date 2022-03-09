@@ -10,21 +10,22 @@ import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import Review from "./Review"
 
-function ReviewPage({ trailData, reviewData, setSelectedId, handlePost }) {
+function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId, handlePost, handleHiker }) {
     const [showModal, setShowModal] = useState(false)
     const [name, setName] = useState("")
     const [image, setImage] = useState("")
     const [rating, setRating] = useState("")
     const [comment, setComment] = useState("")
-    const [userName, setUserName] = useState("")
-    const [userImage, setUserImage] = useState("")
 
     const { id } = useParams()
 
     setSelectedId(id)
 
-    let trails = trailData.trails.map(trail => trail)
-    let selectedTrail = trails[id - 1]
+    const trails = trailData.trails
+
+    if (!trails) return null
+    let trailArray = trails.map(trail => trail)
+    let selectedTrail = trailArray[id - 1]
     let ratings = trailData.rating.map(rating => rating)
     let selectedTrailRating = ratings[id - 1]
 
@@ -67,13 +68,17 @@ function ReviewPage({ trailData, reviewData, setSelectedId, handlePost }) {
     } else {
         attraction = `has a ${selectedTrail.attraction.toLowerCase()} and`
     }
+    
+    const hikers = hikerData.hikers
 
-    // let hikers = hikerData.map(hiker => hiker)
+    if (!hikers) return null
+    const hikerArray = hikers.map((hiker, index) => [hiker, index])
+    console.log(hikerArray)
 
-    let reviews = reviewData.map(review => {
+    let reviews = reviewData.map((review, index) => {
         let dateSplit = review.created_at.split(/[-T]/)
         let created_at = `${dateSplit[1]}/${dateSplit[2]}/${dateSplit[0]}`
-        return <Review key={review.id} userName="bob" userImage="" userRating={review.rating} userComment={review.comment} created_at={created_at} />
+        return <Review key={review.id} userRating={review.rating} userComment={review.comment} created_at={created_at} />
     })
 
     function handleClose() {
@@ -82,8 +87,6 @@ function ReviewPage({ trailData, reviewData, setSelectedId, handlePost }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        setUserName(e.target[0].value)
-        setUserImage(e.target[1].value)
 
         fetch(`http://localhost:9292/reviews/${id}`, {
             method: "POST",
@@ -93,13 +96,25 @@ function ReviewPage({ trailData, reviewData, setSelectedId, handlePost }) {
             body: JSON.stringify({
                 rating: e.target[2].value,
                 comment: e.target[3].value,
-                hiker_id: "",
+                hiker_id: allHikers.length + 1,
                 trail_id: id
             })
         })
             .then(res => res.json())
             .then(data => handlePost(data))
 
+        fetch(`http://localhost:9292/hikers`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: e.target[0].value,
+                picture: e.target[1].value
+            })
+        })
+            .then(res => res.json())
+            .then(data => handleHiker(data))
 
         setName("")
         setImage("")
