@@ -10,7 +10,6 @@ n_hikers.times do
     name = gender == 'men' ? Faker::Name.male_first_name : Faker::Name.female_first_name
     last_name = Faker::Name.last_name
     picture = "https://randomuser.me/api/portraits/thumb/#{ gender }/#{ rand(1..70) }.jpg" 
-    location = Faker::Address.full_address
     Hiker.create(name: "#{ name } #{ last_name }", picture: picture)
 end 
 puts "Hikers done" 
