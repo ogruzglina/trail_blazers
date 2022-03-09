@@ -5,7 +5,7 @@ import TileList from "./TileList"
 import { Link } from "react-router-dom"
 import { Carousel } from 'react-responsive-carousel';
 
-function Home({ trailData }) {
+function Home({ trailData, onSearch }) {
     return (
         <div>
             <Navbar bg="light" variant="light">
@@ -19,7 +19,7 @@ function Home({ trailData }) {
             </Navbar>
             <div style={{ textAlign: "center", height: "550px" }}>
                 <h1 className="searchbar-heading">Take a hike</h1>
-                <SearchBar />
+                <SearchBar onSearch = { onSearch }/>
                 <div className="carousel">
                     <Carousel infiniteLoop={true} autoPlay={true} interval="10000" showArrows={false} showStatus={false} showThumbs={false}>
                         <div>
