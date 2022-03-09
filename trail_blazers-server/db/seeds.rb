@@ -15,7 +15,7 @@ end
 puts "Hikers done" 
 
 puts "Creating trails..."
-parks = ["Black Rock Forest", "Teatown Lake Reservation", "Alley Pond Park", "Penn State Forest", "Umpqua Natilonal Forest", "Catskill Park", 
+parks = ["Black Rock Forest", "Teatown Lake Reservation", "Alley Pond Park", "Penn State Forest", "Umpqua National Forest", "Catskill Park", 
     "Mount Rainier National Park", "Badlands National Park", "Lake Clark National Park & Preserve", "Bryce Canyon National Park", "Rio Grande Nature Center State Park", 
     "Hyde Memorial State Park", "Cerrillos Hills State Park", "White Sands National Park", "Schmidts Woods Park", "Harriman State Park", "Hickory Run State Park", 
     "Tuscarora State Forest", "Buchanan State Forest", "Sleepy Creek Wildlife Management Area"]
