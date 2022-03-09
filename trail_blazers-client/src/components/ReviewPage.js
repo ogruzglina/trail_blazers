@@ -146,7 +146,7 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                 <Container>
                     <Link to="/" style={{ textDecoration: "none", color: "black" }}><b>Home</b></Link>
                     <span style={{ paddingLeft: "50px" }}><img style={{ height: "100px" }} src={logo} alt="logo" /></span>
-                    <b style={{color: "white"}}>Saved Trails</b>
+                    <b style={{ color: "white" }}>Saved Trails</b>
                 </Container>
             </Navbar>
             <div>
@@ -154,18 +154,18 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                     <Card.Img style={{ height: "500px", paddingLeft: "200px", paddingRight: "200px" }} src={selectedTrail.trail_picture} alt="trail-img" />
 
                     <Card.ImgOverlay style={{ height: "200px", transform: "translate(15%, 140%" }}>
-                        <Card.Title style={{ fontSize: "30pt", fontWeight: "700" }}>{selectedTrail.trail_name}</Card.Title>
+                        <Card.Title style={{ fontSize: "30pt", fontWeight: "700", textShadow: "4px 4px black" }}>{selectedTrail.trail_name}</Card.Title>
                         <Card.Text>
                             <div>
                                 <span style={{ backgroundColor: difficultyColor, borderRadius: "30px", color: "white", padding: "3px 20px" }}>
                                     {selectedTrail.difficulty}
                                 </span>
                                 &nbsp;&nbsp;
-                                <span style={{ color: "#f5d24b" }}>{"★".repeat(selectedTrailRating.avg_review)}</span>
+                                <span style={{ color: "#f5d24b", textShadow: "2px 2px black" }}>{"★".repeat(selectedTrailRating.avg_review)}</span>
                                 &nbsp;
-                                ({selectedTrailRating.count})
+                                <span style={{ textShadow: "2px 2px black" }}>({selectedTrailRating.count})</span>
                             </div>
-                            <div style={{ paddingTop: "5px", fontWeight: "700" }}>
+                            <div style={{ paddingTop: "5px", fontWeight: "700", textShadow: "2px 2px black" }}>
                                 {selectedTrail.park_name}
                             </div>
                         </Card.Text>
