@@ -99,7 +99,8 @@ function ReviewPage({ trailData }) {
             <div>
                 <Card className="text-white" border="light">
                     <Card.Img style={{ height: "500px", paddingTop: "30px", paddingLeft: "200px", paddingRight: "200px" }} src={selectedTrail.trail_picture} alt="trail-img" />
-                    <Card.ImgOverlay style={{ textAlign: "center" }}>
+
+                    <Card.ImgOverlay style={{height: "200px", transform: "translate(15%, 140%"}}>
                         <Card.Title style={{ fontSize: "30pt", fontWeight: "700" }}>{selectedTrail.trail_name}</Card.Title>
                         <Card.Text>
                             <div>
@@ -111,7 +112,7 @@ function ReviewPage({ trailData }) {
                                 &nbsp;
                                 ({selectedTrailRating.count})
                             </div>
-                            <div>
+                            <div style={{paddingTop: "5px"}}>
                                 {selectedTrail.park_name}
                             </div>
                         </Card.Text>
