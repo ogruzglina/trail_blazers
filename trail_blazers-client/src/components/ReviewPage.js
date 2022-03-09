@@ -10,7 +10,7 @@ import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import Review from "./Review"
 
-function ReviewPage({ trailData }) {
+function ReviewPage({ trailData, reviewData, setSelectedId }) {
     const [showModal, setShowModal] = useState(false)
     const [name, setName] = useState("")
     const [image, setImage] = useState("")
@@ -22,6 +22,8 @@ function ReviewPage({ trailData }) {
     const [userComment, setUserComment] = useState("")
 
     const { id } = useParams()
+
+    setSelectedId(id)
 
     let trails = trailData.trails.map(trail => trail)
     let selectedTrail = trails[id - 1]
@@ -68,6 +70,14 @@ function ReviewPage({ trailData }) {
         attraction = `has a ${selectedTrail.attraction.toLowerCase()} and`
     }
 
+    // let hikers = hikerData.map(hiker => hiker)
+
+    let reviews = reviewData.map(review => {
+        let dateSplit = review.created_at.split(/[-T]/)
+        let created_at = `${dateSplit[1]}/${dateSplit[2]}/${dateSplit[0]}`
+        return <Review key={review.id} userName="bob" userImage="" userRating={review.rating} userComment={review.comment} created_at={created_at} />
+    })
+
     function handleClose() {
         setShowModal(showModal => !showModal)
     }
@@ -108,7 +118,7 @@ function ReviewPage({ trailData }) {
                                     {selectedTrail.difficulty}
                                 </span>
                                 &nbsp;
-                                {selectedTrailRating.avg_review}
+                                <span style={{ color: "#f5d24b" }}>{"★".repeat(selectedTrailRating.avg_review)}</span>
                                 &nbsp;
                                 ({selectedTrailRating.count})
                             </div>
@@ -167,28 +177,28 @@ function ReviewPage({ trailData }) {
                                 <tbody>
                                     <tr>
                                         <td>5</td>
-                                        <td><img src="https://cdn-assets.alltrails.com/assets/packs/4a246cfd4f990e265e1e.svg" alt="star" /></td>
-                                        <td>count</td>
+                                        <td style={{ color: "lightgrey" }}>★</td>
+                                        <td>{selectedTrailRating.count_stars[4]}</td>
                                     </tr>
                                     <tr>
                                         <td>4</td>
-                                        <td><img src="https://cdn-assets.alltrails.com/assets/packs/4a246cfd4f990e265e1e.svg" alt="star" /></td>
-                                        <td>count</td>
+                                        <td style={{ color: "lightgrey" }}>★</td>
+                                        <td>{selectedTrailRating.count_stars[3]}</td>
                                     </tr>
                                     <tr>
                                         <td>3</td>
-                                        <td><img src="https://cdn-assets.alltrails.com/assets/packs/4a246cfd4f990e265e1e.svg" alt="star" /></td>
-                                        <td>count</td>
+                                        <td style={{ color: "lightgrey" }}>★</td>
+                                        <td>{selectedTrailRating.count_stars[2]}</td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td><img src="https://cdn-assets.alltrails.com/assets/packs/4a246cfd4f990e265e1e.svg" alt="star" /></td>
-                                        <td>count</td>
+                                        <td style={{ color: "lightgrey" }}>★</td>
+                                        <td>{selectedTrailRating.count_stars[1]}</td>
                                     </tr>
                                     <tr>
                                         <td>1</td>
-                                        <td><img src="https://cdn-assets.alltrails.com/assets/packs/4a246cfd4f990e265e1e.svg" alt="star" /></td>
-                                        <td>count</td>
+                                        <td style={{ color: "lightgrey" }}>★</td>
+                                        <td>{selectedTrailRating.count_stars[0]}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -206,6 +216,9 @@ function ReviewPage({ trailData }) {
                         <div className="col" style={{ textAlign: "center" }}>
                             <div style={{ fontSize: "46pt" }}>
                                 {selectedTrailRating.avg_review.toFixed(1)}
+                            </div>
+                            <div>
+                                <span style={{ color: "#f5d24b" }}>{"★".repeat(selectedTrailRating.avg_review)}</span>
                             </div>
                             <div>
                                 {selectedTrailRating.count > 1 ? `${selectedTrailRating.count} Reviews` : `${selectedTrailRating.count} Review`}
@@ -257,8 +270,7 @@ function ReviewPage({ trailData }) {
                 </div>
                 <div style={{ paddingRight: "200px", paddingLeft: "200px", paddingTop: "20px" }}><hr /></div>
                 <div style={{ paddingRight: "200px", paddingLeft: "200px" }}>
-                    <Review userName={userName} userImage={userImage} userRating={userRating} userComment={userComment} />
-                    <hr />
+                    {reviews}
                 </div>
             </div>
         </div>

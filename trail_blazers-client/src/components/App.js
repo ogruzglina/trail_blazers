@@ -6,6 +6,8 @@ import SavedTrails from "./SavedTrails"
 
 function App() {
   const [trailData, setTrailData] = useState([])
+  const [reviewData, setReviewData] = useState([])
+  const [selectedId, setSelectedId] = useState("")
 
   useEffect(async () => {
     async function fetchData() {
@@ -17,13 +19,23 @@ function App() {
     await fetchData()
   }, [])
 
+  useEffect(async () => {
+    async function fetchData() {
+      let request = await fetch(`http://localhost:9292/reviews/${selectedId}`)
+      let response = await request.json()
+      setReviewData(response)
+      return response
+    }
+    await fetchData()
+  }, [selectedId])
+
   return (
     <Switch>
       <Route exact path="/">
         <Home trailData={trailData} />
       </Route>
       <Route path="/review/:id">
-        <ReviewPage trailData={trailData} />
+        <ReviewPage trailData={trailData} reviewData={reviewData} setSelectedId={setSelectedId} />
       </Route>
       <Route path="/saved_trails">
         <SavedTrails />

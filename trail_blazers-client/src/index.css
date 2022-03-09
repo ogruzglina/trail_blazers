@@ -26,3 +26,7 @@
 .text-white {
     color: white
 }
+
+td {
+  padding-right: 10px;
+}

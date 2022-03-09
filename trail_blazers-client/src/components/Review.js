@@ -1,4 +1,6 @@
-function Review({ userName, userImage, userRating, userComment }) {
+import StarIcon from '@mui/icons-material/Star';
+
+function Review({ userName, userImage, userRating, userComment, created_at }) {
     return (
         <div>
             <div>
@@ -10,15 +12,15 @@ function Review({ userName, userImage, userRating, userComment }) {
                 </div>
                 <div className="row">
                     <span style={{ paddingLeft: "20px" }}>
-                        Date
-                        {userRating}
+                        <span style={{ color: "#f5d24b" }}>{"★".repeat(userRating)}</span>
+                        <span style={{ paddingLeft: "5px" }}>{created_at}</span>
                     </span>
                 </div>
             </div>
-            <br />
             <div style={{ paddingLeft: "10px" }}>
                 {userComment}
             </div>
+            <hr />
         </div >
     )
 }
