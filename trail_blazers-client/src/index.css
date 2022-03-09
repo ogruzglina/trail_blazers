@@ -1,3 +1,7 @@
+body {
+    background-color: "#f2f2f2" ;
+}
+
 .carousel {
     z-index: -1;
     transform: translate(0%, -15%);
@@ -23,10 +27,7 @@
     padding-left: 20px;
 }
 
-.text-white {
-    color: white
-}
-
 td {
   padding-right: 10px;
 }
+

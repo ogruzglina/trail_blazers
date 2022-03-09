@@ -100,8 +100,9 @@ function ReviewPage({ trailData, reviewData, setSelectedId }) {
         <div>
             <Navbar>
                 <Container>
-                    <Link to="/">Home</Link>
-                    <Link to="/saved_trails">
+                    <Link to="/" style={{ textDecoration: "none", color: "black" }}>Home</Link>
+                    <b style={{fontSize: "24px"}}>Trail Blazers</b>
+                    <Link to="/saved_trails" style={{ textDecoration: "none", color: "black" }}>
                         Saved Trails
                     </Link>
                 </Container>
@@ -131,6 +132,7 @@ function ReviewPage({ trailData, reviewData, setSelectedId }) {
                         }} >
                             <MapOutlinedIcon /> Directions
                         </Button>
+                        &nbsp;
                         &nbsp;
                         <Button variant="light">
                             <BookmarkBorderOutlinedIcon />
@@ -255,10 +257,12 @@ function ReviewPage({ trailData, reviewData, setSelectedId }) {
                                             <Form.Label>Comments</Form.Label>
                                             <Form.Control as="textarea" placeholder="Enter comments" onChange={() => setComment(comment)} required />
                                         </Form.Group>
+                                        <br />
                                         <div style={{ float: "right" }}>
                                             <Button style={{ backgroundColor: "seagreen", borderColor: "seagreen" }} type="submit">
                                                 Submit
                                             </Button>
+                                            &nbsp;
                                             &nbsp;
                                             <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
                                         </div>
