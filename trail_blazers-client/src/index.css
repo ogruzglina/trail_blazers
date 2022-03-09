@@ -31,3 +31,10 @@ td {
   padding-right: 10px;
 }
 
+.trail-card {
+    transition: transform .3s;
+}
+
+.trail-card:hover {
+    transform: scale(1.05);
+}
