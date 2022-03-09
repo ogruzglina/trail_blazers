@@ -11,7 +11,7 @@ function SearchBar(props) {
     return (
         <div className="searchbar-container">
             <Input
-                style={{ fontSize: "30px", width: "26%", color: "black", backgroundColor: "white", borderRadius: "30px", textAlign: "center", boxShadow: "8px 8px 3px black" }}
+                style={{ fontFamily: "'Fredoka', sans-serif", fontSize: "30px", width: "26%", color: "black", backgroundColor: "white", borderRadius: "30px", textAlign: "center", boxShadow: "8px 8px 3px black" }}
                 sx={{
                     ':before': { borderBottomColor: 'black' },
                     ':after': { borderBottomColor: 'white' },

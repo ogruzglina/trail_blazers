@@ -165,7 +165,7 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                                 <span style={{ backgroundColor: difficultyColor, borderRadius: "30px", color: "white", padding: "3px 20px" }}>
                                     {selectedTrail.difficulty}
                                 </span>
-                                &nbsp;
+                                &nbsp;&nbsp;
                                 <span style={{ color: "#f5d24b" }}>{"★".repeat(selectedTrailRating.avg_review)}</span>
                                 &nbsp;
                                 ({selectedTrailRating.count})
@@ -174,14 +174,14 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                                 {selectedTrail.park_name}
                             </div>
                         </Card.Text>
-                        <Button variant="light" onClick={(e) => {
+                        <Button className="shadow-none" variant="light" onClick={(e) => {
                             window.open(`https://www.google.com/maps/search/${selectedTrail.location}`, "_blank");
                         }} >
                             <MapOutlinedIcon /> Directions
                         </Button>
                         &nbsp;
                         &nbsp;
-                        <Button variant="light">
+                        <Button className="shadow-none" variant="light">
                             <BookmarkBorderOutlinedIcon />
                         </Button>
                     </Card.ImgOverlay>
@@ -274,7 +274,7 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                             </div>
                         </div>
                         <div className="col" style={{ paddingTop: "50px" }}>
-                            <Button style={{ backgroundColor: "seagreen", borderColor: "seagreen" }} onClick={() => setShowModal(true)}>Write a review</Button>
+                            <Button className="shadow-none" style={{ backgroundColor: "seagreen", borderColor: "seagreen" }} onClick={() => setShowModal(true)}>Write a review</Button>
                             <Modal
                                 size="md"
                                 centered
@@ -306,12 +306,12 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                                         </Form.Group>
                                         <br />
                                         <div style={{ float: "right" }}>
-                                            <Button style={{ backgroundColor: "seagreen", borderColor: "seagreen" }} type="submit">
+                                            <Button className="shadow-none" style={{ backgroundColor: "seagreen", borderColor: "seagreen" }} type="submit">
                                                 Submit
                                             </Button>
                                             &nbsp;
                                             &nbsp;
-                                            <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
+                                            <Button className="shadow-none" variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
                                         </div>
                                     </Form>
                                 </Modal.Body>

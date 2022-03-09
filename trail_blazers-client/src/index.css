@@ -11,7 +11,7 @@ body {
 
 .searchbar-container{
     z-index: 1;
-    transform: translate(0%, 190%);
+    transform: translate(0%, 200%);
 }
 
 .searchbar-heading {
