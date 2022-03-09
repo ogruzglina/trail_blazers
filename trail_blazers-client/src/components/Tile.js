@@ -26,14 +26,14 @@ function Tile({ trailData }) {
     } else {
         difficultyColor = "#da1b1b"
     }
-
+        
     return (
         <div className="tile-container">
             <Row xs={1} md={4} className="g-4" style={{ paddingBottom: "20px" }}>
                 {Array.from({ length: 4 }).map((_, idx) => (
                     <Col>
                         <Card >
-                            <Link to="/review" style={{ textDecoration: "none", color: "black" }}>
+                            <Link to={`/review/${trailData.id}`} style={{ textDecoration: "none", color: "black" }}>
                                 <Card.Img variant="top" src={trailData.trail_picture} />
                                 <Card.Body>
                                     <Card.Title>{trailData.trail_name}</Card.Title>
