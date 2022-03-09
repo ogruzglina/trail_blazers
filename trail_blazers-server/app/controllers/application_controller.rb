@@ -6,9 +6,10 @@ class ApplicationController < Sinatra::Base
     trails_count_and_rating = []
 
     trails.each do |trail|
-      trail_count = trail.trail_count_reviews
-      trail_rating = trail.trail_avg_rating
-      trails_count_and_rating << {trail_id: trail.id, count: trail_count, avg_review: trail_rating}
+      count_reviews = trail.trail_count_reviews
+      avg_rating = trail.trail_avg_rating
+      count_stars = trail.trail_count_stars
+      trails_count_and_rating << {trail_id: trail.id, count: count_reviews, avg_review: avg_rating, count_stars: count_stars}
     end
 
     result = {trails: trails, rating: trails_count_and_rating}
