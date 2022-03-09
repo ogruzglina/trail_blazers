@@ -2,7 +2,6 @@ import { Route, Switch } from "react-router-dom"
 import { useState, useEffect } from "react"
 import Home from "./Home"
 import ReviewPage from "./ReviewPage"
-import SavedTrails from "./SavedTrails"
 
 function App() {
   const [trailData, setTrailData] = useState([])
