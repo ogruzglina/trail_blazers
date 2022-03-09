@@ -14,11 +14,11 @@ function Home({ trailData, onSearch, setSearch }) {
                     <Link to="/saved_trails" style={{ textDecoration: "none", color: "black" }}>
                         <b>Saved Trails</b>
                     </Link>
-                    <img style={{ height: "100px" }} src={logo} alt="logo" />
+                    <img style={{ height: "100px", paddingLeft: "3px" }} src={logo} alt="logo" />
                     <span style={{ color: "white" }}>placeholder</span>
                 </Container>
             </Navbar>
-            <div style={{ textAlign: "center", height: "475px" }}>
+            <div style={{ textAlign: "center", height: "450px" }}>
                 <h1 className="searchbar-heading">Take a hike</h1>
                 <SearchBar onSearch={onSearch} />
                 <div className="carousel">

@@ -1,5 +1,6 @@
 body {
     background-color: "#f2f2f2" ;
+    font-family: 'Fredoka', sans-serif !important;
 }
 
 .carousel {
@@ -19,7 +20,7 @@ body {
     color: white;
     font-weight: "strong";
     font-size: 54pt;
-    text-shadow: 4px 4px black;
+    text-shadow: 6px 4px black;
 }
 
 .tile-container {
