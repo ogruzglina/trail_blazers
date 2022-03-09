@@ -65,7 +65,7 @@ function ReviewPage({ trailData }) {
     } else if (selectedTrail.attraction === null) {
         attraction = ""
     } else {
-        attraction = `has a ${selectedTrail.attraction.toLowerCase} and`
+        attraction = `has a ${selectedTrail.attraction.toLowerCase()} and`
     }
 
     function handleClose() {
