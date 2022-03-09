@@ -2,7 +2,6 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import SearchBar from "./SearchBar"
 import TileList from "./TileList"
-import { Link } from "react-router-dom"
 import { Carousel } from 'react-responsive-carousel';
 import logo from "./logo.png"
 
