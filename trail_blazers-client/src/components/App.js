@@ -88,9 +88,6 @@ function App() {
           handleHiker={handleHiker}
         />
       </Route>
-      <Route path="/saved_trails">
-        <SavedTrails />
-      </Route>
     </Switch>
   )
 }

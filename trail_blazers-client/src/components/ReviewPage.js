@@ -7,7 +7,6 @@ import Form from "react-bootstrap/Form"
 import Modal from "react-bootstrap/Modal"
 import Container from "react-bootstrap/Container"
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import Review from "./Review"
 import logo from "./logo.png"
 
@@ -84,7 +83,6 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
     const hikers = hikerData.hikers
 
     if (!hikers) return null
-
     const hikerArray = hikers.map(hiker => hiker)
 
     let data = [];
@@ -106,7 +104,6 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
 
     function handleSubmit(e) {
         e.preventDefault()
-
         fetch(`http://localhost:9292/reviews/${id}`, {
             method: "POST",
             headers: {
@@ -149,9 +146,7 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                 <Container>
                     <Link to="/" style={{ textDecoration: "none", color: "black" }}><b>Home</b></Link>
                     <span style={{ paddingLeft: "50px" }}><img style={{ height: "100px" }} src={logo} alt="logo" /></span>
-                    <Link to="/saved_trails" style={{ textDecoration: "none", color: "black" }}>
-                        <b>Saved Trails</b>
-                    </Link>
+                    <b style={{color: "white"}}>Saved Trails</b>
                 </Container>
             </Navbar>
             <div>
@@ -178,11 +173,6 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                             window.open(`https://www.google.com/maps/search/${selectedTrail.location}`, "_blank");
                         }} >
                             <MapOutlinedIcon /> Directions
-                        </Button>
-                        &nbsp;
-                        &nbsp;
-                        <Button className="shadow-none" variant="light">
-                            <BookmarkBorderOutlinedIcon />
                         </Button>
                     </Card.ImgOverlay>
                 </Card>

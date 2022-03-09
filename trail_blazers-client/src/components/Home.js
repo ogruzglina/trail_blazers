@@ -11,9 +11,7 @@ function Home({ trailData, onSearch, setSearch }) {
         <div>
             <Navbar style={{ backgroundColor: "white" }}>
                 <Container>
-                    <Link to="/saved_trails" style={{ textDecoration: "none", color: "black" }}>
-                        <b>Saved Trails</b>
-                    </Link>
+                    <b style={{ color: "white" }}>Saved Trails</b>
                     <img style={{ height: "100px", paddingLeft: "3px" }} src={logo} alt="logo" />
                     <span style={{ color: "white" }}>placeholder</span>
                 </Container>
