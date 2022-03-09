@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Navbar from "react-bootstrap/Navbar"
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
@@ -17,11 +17,22 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
     const [image, setImage] = useState("")
     const [rating, setRating] = useState("")
     const [comment, setComment] = useState("")
+    const [ sort, setSort ] = useState('default');
+    const [ sortedReviewData, setSortedReviewData ] = useState(reviewData);
 
     const { id } = useParams()
-
     setSelectedId(id)
 
+    useEffect(async () => {
+        async function fetchData() {
+          let request = await fetch(`http://localhost:9292/reviews/${id}/${sort}`)
+          let response = await request.json()
+          setSortedReviewData(response)
+          return response
+        }
+        await fetchData()
+    }, [sort])
+    
     const trails = trailData.trails
 
     if (!trails) return null
@@ -73,9 +84,18 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
     const hikers = hikerData.hikers
 
     if (!hikers) return null
-    const hikerArray = hikers.map(hiker => hiker)
 
-    let reviews = reviewData.map((review, index) => {
+    const hikerArray = hikers.map((hiker, index) => [hiker, index])
+    
+    let data = [];
+    if (sort === 'default') {
+        data = reviewData;
+    } else {
+        if (!sortedReviewData) return null
+        data = sortedReviewData
+    }
+    let reviews = data.map((review, index) => {
+
         let dateSplit = review.created_at.split(/[-T]/)
         let created_at = `${dateSplit[1]}/${dateSplit[2]}/${dateSplit[0]}`
         return <Review key={review.id} userName={hikerArray[index].name} userImage={hikerArray[index].picture} userRating={review.rating} userComment={review.comment} created_at={created_at} />
@@ -234,14 +254,15 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                             </table>
                             <br />
                             <div>
-                                <b>Sort by: </b>
-                                &nbsp;
-                                <select style={{ textAlign: "center" }}>
-                                    <option>Default</option>
-                                    <option>Newest First</option>
-                                    <option>Oldest First</option>
-                                    <option>Highest Rated</option>
-                                    <option>Lowest Rated</option>
+
+                                Sort by: <select name="correctIndex" value = { sort } onChange = { e => setSort(e.target.value) }>
+                                    <option value = 'default'>Default</option>
+                                    <option value = 'newest'>Newest First</option>
+                                    <option value = 'oldest'>Oldest First</option>
+                                    <option value = 'highest'>Highest Rated</option>
+                                    <option value = 'lowest'>Lowest Rated</option>
+
+
                                 </select>
                             </div>
                         </div>
