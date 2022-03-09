@@ -38,6 +38,9 @@ function Tile({ trailData }) {
                                 <Card.Title>{trailData.trail_name}</Card.Title>
                                 <Card.Text>
                                     <div>
+                                        {trailData.park_name}
+                                    </div>
+                                    <div>
                                         {location}
                                     </div>
                                     <div>
