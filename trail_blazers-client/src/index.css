@@ -4,7 +4,7 @@ body {
 
 .carousel {
     z-index: -1;
-    transform: translate(0%, -15%);
+    transform: translate(0%, -25%);
     height: 500px !important;
 }
 
@@ -15,10 +15,10 @@ body {
 
 .searchbar-heading {
     z-index: 1;
-    transform: translate(0%, 275%);
+    transform: translate(0%, 200%);
     color: white;
     font-weight: "strong";
-    font-size: 36pt;
+    font-size: 54pt;
 }
 
 .tile-container {
