@@ -95,7 +95,6 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
         data = sortedReviewData
     }
     let reviews = data.map((review, index) => {
-
         let dateSplit = review.created_at.split(/[-T]/)
         let created_at = `${dateSplit[1]}/${dateSplit[2]}/${dateSplit[0]}`
         return <Review key={review.id} userName={hikerArray[index].name} userImage={hikerArray[index].picture} userRating={review.rating} userComment={review.comment} created_at={created_at} />
@@ -149,7 +148,7 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
             <Navbar>
                 <Container>
                     <Link to="/" style={{ textDecoration: "none", color: "black" }}><b>Home</b></Link>
-                    <span style={{ paddingLeft: "56px" }}><img style={{ height: "100px" }} src={logo} alt="logo" /></span>
+                    <span style={{ paddingLeft: "50px" }}><img style={{ height: "100px" }} src={logo} alt="logo" /></span>
                     <Link to="/saved_trails" style={{ textDecoration: "none", color: "black" }}>
                         <b>Saved Trails</b>
                     </Link>
