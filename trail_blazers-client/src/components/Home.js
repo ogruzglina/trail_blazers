@@ -4,22 +4,23 @@ import SearchBar from "./SearchBar"
 import TileList from "./TileList"
 import { Link } from "react-router-dom"
 import { Carousel } from 'react-responsive-carousel';
+import logo from "./logo.png"
 
 function Home({ trailData, onSearch, setSearch }) {
     return (
         <div>
-            <Navbar bg="light" variant="light">
+            <Navbar style={{ backgroundColor: "white" }}>
                 <Container>
                     <Link to="/saved_trails" style={{ textDecoration: "none", color: "black" }}>
-                        Saved Trails
+                        <b>Saved Trails</b>
                     </Link>
-                    <b style={{ fontSize: "24px" }}>Trail Blazers</b>
+                    <img style={{ height: "100px" }} src={logo} alt="logo" />
                     <span style={{ color: "white" }}>placeholder</span>
                 </Container>
             </Navbar>
-            <div style={{ textAlign: "center", height: "550px" }}>
+            <div style={{ textAlign: "center", height: "475px" }}>
                 <h1 className="searchbar-heading">Take a hike</h1>
-                <SearchBar onSearch = { onSearch }/>
+                <SearchBar onSearch={onSearch} />
                 <div className="carousel">
                     <Carousel infiniteLoop={true} autoPlay={true} interval="10000" showArrows={false} showStatus={false} showThumbs={false}>
                         <div>

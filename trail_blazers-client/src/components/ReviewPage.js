@@ -9,6 +9,7 @@ import Container from "react-bootstrap/Container"
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import Review from "./Review"
+import logo from "./logo.png"
 
 function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId, handlePost, handleHiker }) {
     const [showModal, setShowModal] = useState(false)
@@ -68,17 +69,16 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
     } else {
         attraction = `has a ${selectedTrail.attraction.toLowerCase()} and`
     }
-    
+
     const hikers = hikerData.hikers
 
     if (!hikers) return null
-    const hikerArray = hikers.map((hiker, index) => [hiker, index])
-    console.log(hikerArray)
+    const hikerArray = hikers.map(hiker => hiker)
 
     let reviews = reviewData.map((review, index) => {
         let dateSplit = review.created_at.split(/[-T]/)
         let created_at = `${dateSplit[1]}/${dateSplit[2]}/${dateSplit[0]}`
-        return <Review key={review.id} userRating={review.rating} userComment={review.comment} created_at={created_at} />
+        return <Review key={review.id} userName={hikerArray[index].name} userImage={hikerArray[index].picture} userRating={review.rating} userComment={review.comment} created_at={created_at} />
     })
 
     function handleClose() {
@@ -123,20 +123,21 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
 
         handleClose()
     }
+
     return (
         <div>
             <Navbar>
                 <Container>
-                    <Link to="/" style={{ textDecoration: "none", color: "black" }}>Home</Link>
-                    <b style={{ fontSize: "24px" }}>Trail Blazers</b>
+                    <Link to="/" style={{ textDecoration: "none", color: "black" }}><b>Home</b></Link>
+                    <span style={{paddingLeft: "56px"}}><img style={{ height: "100px" }} src={logo} alt="logo" /></span>
                     <Link to="/saved_trails" style={{ textDecoration: "none", color: "black" }}>
-                        Saved Trails
+                        <b>Saved Trails</b>
                     </Link>
                 </Container>
             </Navbar>
             <div>
                 <Card className="text-white" border="light">
-                    <Card.Img style={{ height: "500px", paddingTop: "30px", paddingLeft: "200px", paddingRight: "200px" }} src={selectedTrail.trail_picture} alt="trail-img" />
+                    <Card.Img style={{ height: "500px", paddingLeft: "200px", paddingRight: "200px" }} src={selectedTrail.trail_picture} alt="trail-img" />
 
                     <Card.ImgOverlay style={{ height: "200px", transform: "translate(15%, 140%" }}>
                         <Card.Title style={{ fontSize: "30pt", fontWeight: "700" }}>{selectedTrail.trail_name}</Card.Title>
@@ -205,35 +206,37 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>5</td>
-                                        <td style={{ color: "lightgrey" }}>★</td>
+                                        <td><b>5</b></td>
+                                        <td style={{ color: "#f5d24b" }}>{"★".repeat(5)}</td>
                                         <td>{selectedTrailRating.count_stars[4]}</td>
                                     </tr>
                                     <tr>
-                                        <td>4</td>
-                                        <td style={{ color: "lightgrey" }}>★</td>
+                                        <td><b>4</b></td>
+                                        <td style={{ color: "#f5d24b" }}>{"★".repeat(4)}</td>
                                         <td>{selectedTrailRating.count_stars[3]}</td>
                                     </tr>
                                     <tr>
-                                        <td>3</td>
-                                        <td style={{ color: "lightgrey" }}>★</td>
+                                        <td><b>3</b></td>
+                                        <td style={{ color: "#f5d24b" }}>{"★".repeat(3)}</td>
                                         <td>{selectedTrailRating.count_stars[2]}</td>
                                     </tr>
                                     <tr>
-                                        <td>2</td>
-                                        <td style={{ color: "lightgrey" }}>★</td>
+                                        <td><b>2</b></td>
+                                        <td style={{ color: "#f5d24b" }}>{"★".repeat(2)}</td>
                                         <td>{selectedTrailRating.count_stars[1]}</td>
                                     </tr>
                                     <tr>
-                                        <td>1</td>
-                                        <td style={{ color: "lightgrey" }}>★</td>
+                                        <td><b>1</b></td>
+                                        <td style={{ color: "#f5d24b" }}>{"★".repeat(1)}</td>
                                         <td>{selectedTrailRating.count_stars[0]}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <br />
                             <div>
-                                Sort by: <select>
+                                <b>Sort by: </b>
+                                &nbsp;
+                                <select style={{ textAlign: "center" }}>
                                     <option>Default</option>
                                     <option>Newest First</option>
                                     <option>Oldest First</option>
