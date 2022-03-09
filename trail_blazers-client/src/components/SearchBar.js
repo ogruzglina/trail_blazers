@@ -1,20 +1,33 @@
 import Input from '@mui/material/Input';
+import { withStyles } from "@material-ui/core/styles";
 
-function SearchBar({ onSearch }) {
+const styles = theme => ({
+    inputCenter: {
+        textAlign: "center"
+    }
+});
+
+function SearchBar(props) {
     return (
         <div className="searchbar-container">
             <Input
-                style={{ fontSize: "50px", width: "38%", color: "white" }}
+                style={{ fontSize: "30px", width: "26%", color: "black", backgroundColor: "white", borderRadius: "30px", textAlign: "center" }}
                 sx={{
                     ':before': { borderBottomColor: 'black' },
                     ':after': { borderBottomColor: 'white' },
                 }}
-                type = "text"
+                disableUnderline={true}
+                type="text"
                 placeholder="Search for a park or trail"
-                onChange = { (e) => onSearch(e.target.value) }
+                onChange={(e) => props.onSearch(e.target.value)}
+                classes={{
+                    input: props.classes.inputCenter
+                }}
             />
         </div>
     )
 }
+
+SearchBar = withStyles(styles)(SearchBar);
 
 export default SearchBar

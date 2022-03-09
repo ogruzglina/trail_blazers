@@ -149,7 +149,7 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
             <Navbar>
                 <Container>
                     <Link to="/" style={{ textDecoration: "none", color: "black" }}><b>Home</b></Link>
-                    <span style={{paddingLeft: "56px"}}><img style={{ height: "100px" }} src={logo} alt="logo" /></span>
+                    <span style={{ paddingLeft: "56px" }}><img style={{ height: "100px" }} src={logo} alt="logo" /></span>
                     <Link to="/saved_trails" style={{ textDecoration: "none", color: "black" }}>
                         <b>Saved Trails</b>
                     </Link>
@@ -188,7 +188,7 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                     </Card.ImgOverlay>
                 </Card>
                 <div style={{ paddingRight: "200px", paddingLeft: "200px", paddingTop: "20px", fontSize: "18px", textAlign: "center" }}>
-                    {`${selectedTrail.trail_name} is a ${selectedTrail.length} mile ${selectedTrail.trail_type} located near ${location} that ${attraction} is ${difficultyText}.`}
+                    {`${selectedTrail.trail_name} is a ${selectedTrail.length} mile ${selectedTrail.trail_type.toLowerCase()} trail located near ${location} that ${attraction} is ${difficultyText}.`}
                     <hr />
                 </div>
                 <div style={{ paddingRight: "200px", paddingLeft: "200px", textAlign: "center" }}>
@@ -255,13 +255,13 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                             <br />
                             <div>
 
-                                Sort by: <select name="correctIndex" value = { sort } onChange = { e => setSort(e.target.value) }>
-                                    <option value = 'default'>Default</option>
-                                    <option value = 'newest'>Newest First</option>
-                                    <option value = 'oldest'>Oldest First</option>
-                                    <option value = 'highest'>Highest Rated</option>
-                                    <option value = 'lowest'>Lowest Rated</option>
-
+                                <b>Sort by: </b>
+                                <select style={{ textAlign: "center", borderStyle: "none", outline: "none", color: "#428a13"}}>
+                                    <option>Default</option>
+                                    <option>Newest First</option>
+                                    <option>Oldest First</option>
+                                    <option>Highest Rated</option>
+                                    <option>Lowest Rated</option>
 
                                 </select>
                             </div>

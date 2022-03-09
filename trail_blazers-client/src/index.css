@@ -10,15 +10,16 @@ body {
 
 .searchbar-container{
     z-index: 1;
-    transform: translate(0%, 200%);
+    transform: translate(0%, 190%);
 }
 
 .searchbar-heading {
     z-index: 1;
-    transform: translate(0%, 200%);
+    transform: translate(0%, 120%);
     color: white;
     font-weight: "strong";
     font-size: 54pt;
+    text-shadow: 4px 4px black;
 }
 
 .tile-container {
