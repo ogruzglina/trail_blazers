@@ -17,22 +17,22 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
     const [image, setImage] = useState("")
     const [rating, setRating] = useState("")
     const [comment, setComment] = useState("")
-    const [ sort, setSort ] = useState('default');
-    const [ sortedReviewData, setSortedReviewData ] = useState(reviewData);
+    const [sort, setSort] = useState('default');
+    const [sortedReviewData, setSortedReviewData] = useState(reviewData);
 
     const { id } = useParams()
     setSelectedId(id)
 
     useEffect(async () => {
         async function fetchData() {
-          let request = await fetch(`http://localhost:9292/reviews/${id}/${sort}`)
-          let response = await request.json()
-          setSortedReviewData(response)
-          return response
+            let request = await fetch(`http://localhost:9292/reviews/${id}/${sort}`)
+            let response = await request.json()
+            setSortedReviewData(response)
+            return response
         }
         await fetchData()
     }, [sort])
-    
+
     const trails = trailData.trails
 
     if (!trails) return null
@@ -85,8 +85,8 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
 
     if (!hikers) return null
 
-    const hikerArray = hikers.map((hiker, index) => [hiker, index])
-    
+    const hikerArray = hikers.map(hiker => hiker)
+
     let data = [];
     if (sort === 'default') {
         data = reviewData;
@@ -254,15 +254,12 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                             </table>
                             <br />
                             <div>
-
-                                <b>Sort by: </b>
-                                <select style={{ textAlign: "center", borderStyle: "none", outline: "none", color: "#428a13"}}>
-                                    <option>Default</option>
-                                    <option>Newest First</option>
-                                    <option>Oldest First</option>
-                                    <option>Highest Rated</option>
-                                    <option>Lowest Rated</option>
-
+                                <b>Sort by:</b> <select style={{ outline: "none", borderStyle: "none", textAlign: "center", color: "#428a13" }} name="correctIndex" value={sort} onChange={e => setSort(e.target.value)}>
+                                    <option value='default'>Default</option>
+                                    <option value='newest'>Newest First</option>
+                                    <option value='oldest'>Oldest First</option>
+                                    <option value='highest'>Highest Rated</option>
+                                    <option value='lowest'>Lowest Rated</option>
                                 </select>
                             </div>
                         </div>
