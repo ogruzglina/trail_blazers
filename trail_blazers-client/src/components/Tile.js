@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col"
 import Card from "react-bootstrap/Card"
 
 
-function Tile({ trailData }) {
+function Tile({ trailData, setSearch }) {
     let locationSplit = trailData.location.split(",")
     let location = (locationSplit[1] + "," + locationSplit[2].slice(0, 3))
     let hours = Math.floor(trailData.duration / 60)
@@ -27,11 +27,15 @@ function Tile({ trailData }) {
         difficultyColor = "#da1b1b"
     }
 
+    function clearSearch() {
+        setSearch("")
+    }
+
     return (
         <div className="tile-container">
             <Row xs={1} md={4} className="g-4" style={{ paddingBottom: "20px" }}>
                 <Col>
-                    <Card className="trail-card">
+                    <Card className="trail-card" onClick={clearSearch}>
                         <Link to={`/review/${trailData.id}`} style={{ textDecoration: "none", color: "black" }}>
                             <Card.Img variant="top" src={trailData.trail_picture} />
                             <Card.Body>

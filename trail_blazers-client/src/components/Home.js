@@ -5,7 +5,7 @@ import TileList from "./TileList"
 import { Link } from "react-router-dom"
 import { Carousel } from 'react-responsive-carousel';
 
-function Home({ trailData, onSearch }) {
+function Home({ trailData, onSearch, setSearch }) {
     return (
         <div>
             <Navbar bg="light" variant="light">
@@ -35,7 +35,7 @@ function Home({ trailData, onSearch }) {
                 </div>
             </div>
             <div>
-                <TileList trails={trailData.trails} />
+                <TileList trails={trailData.trails} setSearch={setSearch} />
             </div>
         </div>
     )
