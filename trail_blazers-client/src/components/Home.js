@@ -10,14 +10,15 @@ function Home({ trailData }) {
         <div>
             <Navbar bg="light" variant="light">
                 <Container>
-                    <Link to="/saved_trails">
+                    <Link to="/saved_trails" style={{ textDecoration: "none", color: "black" }}>
                         Saved Trails
                     </Link>
-                    <b>Trail Blazers</b>
+                    <b style={{ fontSize: "24px" }}>Trail Blazers</b>
+                    <span style={{ color: "white" }}>placeholder</span>
                 </Container>
             </Navbar>
             <div style={{ textAlign: "center", height: "550px" }}>
-                <h1 className="searchbar-heading">Logo Here</h1>
+                <h1 className="searchbar-heading">Take a hike</h1>
                 <SearchBar />
                 <div className="carousel">
                     <Carousel infiniteLoop={true} autoPlay={true} interval="10000" showArrows={false} showStatus={false} showThumbs={false}>

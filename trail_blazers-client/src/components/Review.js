@@ -1,5 +1,3 @@
-import StarIcon from '@mui/icons-material/Star';
-
 function Review({ userName, userImage, userRating, userComment, created_at }) {
     return (
         <div>

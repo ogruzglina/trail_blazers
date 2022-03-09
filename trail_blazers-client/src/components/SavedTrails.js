@@ -6,12 +6,14 @@ function SavedTrails() {
     return (
         <Navbar>
             <Container>
-                <Link to="/">
+                <Link to="/" style={{ textDecoration: "none", color: "black" }}>
                     Home
                 </Link>
+                <b style={{ fontSize: "24px" }}>Trail Blazers</b>
+                <span style={{ color: "white" }}>placeholder</span>
             </Container>
         </Navbar>
-        
+
     )
 }
 
