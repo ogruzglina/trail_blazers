@@ -9,7 +9,7 @@ n_hikers.times do
     gender = ['men', 'women'].sample
     name = gender == 'men' ? Faker::Name.male_first_name : Faker::Name.female_first_name
     last_name = Faker::Name.last_name
-    picture = "https://randomuser.me/api/portraits/thumb/#{ gender }/#{ rand(1..70) }.jpg" 
+    picture = ["https://randomuser.me/api/portraits/thumb/#{ gender }/#{ rand(1..70) }.jpg", nil].sample
     Hiker.create(name: "#{ name } #{ last_name }", picture: picture)
 end 
 puts "Hikers done" 
@@ -90,10 +90,15 @@ reviews = [
     {rating: 2, comment: nil},
     {rating: 3, comment: "These directions were so very helpful and accurate. We had a good hike; remember tick protection because there are some grassy areas. We used picardin and seem to have come.back clean. Thanks for these fantastic directions and cues!"},
     {rating: 1, comment: nil},
-    {rating: 3, comment: "Lost cell reception before we made it to the parking area so a hard copy/offline map is a good idea"}
+    {rating: 3, comment: "Lost cell reception before we made it to the parking area so a hard copy/offline map is a good idea"},
+    {rating: 3, comment: "Fun in the snow! Didn't have to dodge bikers today!"},
+    {rating: 3, comment: "The trail was in pretty good shape. As always you should have a very good pair of trail running shoes to take it on. I named this trip “Wrong & Redundant” because I chose to take each time marked “wrong way”, and in doing so, ended having to retrace my steps multiple times. There weren’t any bikes on the trail, but I’d there were, I’d prefer to see them coming and be able to step out of the way. The best part is always running the ramps in the dirt park. Has a very Sonic feel. "},
+    {rating: 1, comment: "Too many mosquitoes!!"},
+    {rating: 2, comment: "Very confusing trail and mainly used for bikers. "},
+    {rating: 2, comment: "It’s like a maze/jungle in here"}
 ]
 
-25.times do
+30.times do
     r = reviews.sample
     rating = r.values[0]
     comment =r.values[1]
