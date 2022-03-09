@@ -31,7 +31,7 @@ function Tile({ trailData }) {
         <div className="tile-container">
             <Row xs={1} md={4} className="g-4" style={{ paddingBottom: "20px" }}>
                 <Col>
-                    <Card >
+                    <Card className="trail-card">
                         <Link to={`/review/${trailData.id}`} style={{ textDecoration: "none", color: "black" }}>
                             <Card.Img variant="top" src={trailData.trail_picture} />
                             <Card.Body>
