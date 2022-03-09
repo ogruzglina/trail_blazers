@@ -41,7 +41,7 @@ photos = ["https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_600
     "https://d2exd72xrrp1s7.cloudfront.net/www/guide/31731/1FCrga?width=800&height=560&crop=true&q=40", 
     "https://www.planetware.com/photos-large/USMN/minnesota-jay-cooke-state-park-silver-creek-trail-st-louis-river.jpg",
     "https://cdn.securem2.com//commonimages/pages/2021/8/mountainrangefall.jpg"]
-attractions = ["Waterfall", "Wildflowers", "Wood", "Scenic View", "Lake", "Historic Feature", "Bridge", "Cliffs", "Wild Animals", "Cave", "Mountain", "River", "Overlook", nil]
+attractions = ["Waterfall", "Wildflowers", "Scenic View", "Lake", "Historic Feature", "Bridge", "Cliffs", "Wild Animals", "Cave", "Mountain", "River", "Overlook", nil]
 n_trails = 20
 
 n_trails.times do
