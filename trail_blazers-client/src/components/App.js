@@ -29,13 +29,17 @@ function App() {
     await fetchData()
   }, [selectedId])
 
+  function handlePost(newPost) {
+    setReviewData([...reviewData, newPost])
+  }
+
   return (
     <Switch>
       <Route exact path="/">
         <Home trailData={trailData} />
       </Route>
       <Route path="/review/:id">
-        <ReviewPage trailData={trailData} reviewData={reviewData} setSelectedId={setSelectedId} />
+        <ReviewPage trailData={trailData} reviewData={reviewData} setSelectedId={setSelectedId} handlePost={handlePost} />
       </Route>
       <Route path="/saved_trails">
         <SavedTrails />
