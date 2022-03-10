@@ -144,8 +144,8 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
         <div>
             <Navbar>
                 <Container>
-                    <Link to="/" style={{ textDecoration: "none", color: "black" }}><b>Home</b></Link>
-                    <span style={{ paddingLeft: "50px" }}><img style={{ height: "100px" }} src={logo} alt="logo" /></span>
+                    <Link to="/" style={{ textDecoration: "none", color: "black", fontSize: "20px" }}><b>Home</b></Link>
+                    <span style={{ paddingLeft: "39px" }}><img style={{ height: "100px" }} src={logo} alt="logo" /></span>
                     <b style={{ color: "white" }}>Saved Trails</b>
                 </Container>
             </Navbar>
@@ -289,7 +289,7 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
                                         </Form.Group>
                                         <Form.Group className="mb-3" >
                                             <Form.Label>Comments</Form.Label>
-                                            <Form.Control as="textarea" placeholder="Enter comments" onChange={() => setComment(comment)} required />
+                                            <Form.Control as="textarea" placeholder="Enter comments" onChange={() => setComment(comment)} />
                                         </Form.Group>
                                         <br />
                                         <div style={{ float: "right" }}>
