@@ -1,58 +1,8 @@
-import Modal from "react-bootstrap/Modal"
 import Navbar from "react-bootstrap/Navbar"
-import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
-import { useState } from "react"
+import AddNewReview from "./AddNewReview"
 
-function TrailReviewInfo({ id, selectedTrailRating, handlePost, allHikers, sort, setSort }) {
-    const [showModal, setShowModal] = useState(false)
-    const [name, setName] = useState("")
-    const [image, setImage] = useState("")
-    const [rating, setRating] = useState("")
-    const [comment, setComment] = useState("")
-
-    function handleClose() {
-        setShowModal(showModal => !showModal)
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault()
-        fetch(`http://localhost:9292/reviews/${id}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                rating: e.target[2].value,
-                comment: e.target[3].value,
-                hiker_id: allHikers.length + 1,
-                trail_id: id
-            })
-        })
-            .then(res => res.json())
-            .then(data => handlePost(data))
-
-        fetch(`http://localhost:9292/hikers`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: e.target[0].value,
-                picture: e.target[1].value
-            })
-        })
-            .then(res => res.json())
-
-        setName("")
-        setImage("")
-        setRating("")
-        setComment("")
-
-        handleClose()
-    }
-
+function TrailReviewInfo({ id, handlePost, allHikers, selectedTrailRating, sort, setSort }) {
     return (
         <div>
             <div style={{ paddingRight: "200px", paddingLeft: "200px", paddingTop: "20px" }}>
@@ -98,7 +48,7 @@ function TrailReviewInfo({ id, selectedTrailRating, handlePost, allHikers, sort,
                         </table>
                         <br />
                         <div>
-                            <b>Sort by:</b> 
+                            <b>Sort by:</b>
                             <select style={{ outline: "none", borderStyle: "none", textAlign: "center", color: "#428a13" }} name="correctIndex" value={sort} onChange={e => setSort(e.target.value)}>
                                 <option value='default'>Default</option>
                                 <option value='newest'>Newest First</option>
@@ -119,50 +69,11 @@ function TrailReviewInfo({ id, selectedTrailRating, handlePost, allHikers, sort,
                             {selectedTrailRating.count > 1 ? `${selectedTrailRating.count} Reviews` : `${selectedTrailRating.count} Review`}
                         </div>
                     </div>
-                    <div className="col" style={{ paddingTop: "50px" }}>
-                        <Button className="shadow-none" style={{ backgroundColor: "seagreen", borderColor: "seagreen" }} onClick={() => setShowModal(true)}>Write a review</Button>
-                        <Modal
-                            size="md"
-                            centered
-                            show={showModal}
-                            onHide={handleClose}
-                        >
-                            <Modal.Header closeButton>
-                                <Modal.Title>
-                                    <b>Write a review</b>
-                                </Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body >
-                                <Form onSubmit={handleSubmit}>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Name</Form.Label>
-                                        <Form.Control placeholder="Enter name" onChange={() => setName(name)} required />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>Image</Form.Label>
-                                        <Form.Control placeholder="Enter URL" onChange={() => setImage(image)} />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" >
-                                        <Form.Label>Rating</Form.Label>
-                                        <Form.Control type="number" min="1" max="5" placeholder="Enter rating (1-5)" onChange={() => setRating(rating)} required />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" >
-                                        <Form.Label>Comments</Form.Label>
-                                        <Form.Control as="textarea" placeholder="Enter comments" onChange={() => setComment(comment)} />
-                                    </Form.Group>
-                                    <br />
-                                    <div style={{ float: "right" }}>
-                                        <Button className="shadow-none" style={{ backgroundColor: "seagreen", borderColor: "seagreen" }} type="submit">
-                                            Submit
-                                        </Button>
-                                        &nbsp;
-                                        &nbsp;
-                                        <Button className="shadow-none" variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
-                                    </div>
-                                </Form>
-                            </Modal.Body>
-                        </Modal>
-                    </div>
+                    <AddNewReview
+                        id={id}
+                        handlePost={handlePost}
+                        allHikers={allHikers}
+                    />
                 </div>
             </div>
         </div>
