@@ -40,14 +40,16 @@ class ApplicationController < Sinatra::Base
   get "/reviews/:trail_id/?:sort?" do # ?:sort? -it's an optional parametr
     sort = params[:sort]
     trail_id = params[:trail_id]
-    sorted_reviews = []
+    # sorted_reviews = []
 
     t_reviews = Trail.trail_reviews(trail_id)
 
-    if sort == nil
-      Hiker.hikers_with_reviews(t_reviews).to_json
-    else
+    # if sort == nil
+    #   Hiker.hikers_with_reviews(t_reviews).to_json
+    # else
       sorted_reviews = case sort
+      when "default"
+        t_reviews
         when "newest"
           t_reviews.order(created_at: :desc)
         when "oldest"
@@ -58,7 +60,7 @@ class ApplicationController < Sinatra::Base
           t_reviews.order(rating: :asc)
         end
         Hiker.hikers_with_reviews(sorted_reviews).to_json
-    end
+    # end
   end
 
   post "/reviews/:id" do
