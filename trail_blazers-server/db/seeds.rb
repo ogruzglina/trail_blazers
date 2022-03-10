@@ -1,7 +1,5 @@
 puts "Start seeding"
 
-# Run rake db:reset in console instead of rake db:seed
-
 puts "Creating hikers..."
 n_hikers = 20
 
