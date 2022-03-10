@@ -152,23 +152,20 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
             <div>
                 <Card className="text-white" border="light">
                     <Card.Img style={{ height: "500px", paddingLeft: "200px", paddingRight: "200px" }} src={selectedTrail.trail_picture} alt="trail-img" />
-
                     <Card.ImgOverlay style={{ height: "200px", transform: "translate(15%, 140%" }}>
                         <Card.Title style={{ fontSize: "30pt", fontWeight: "700", textShadow: "4px 4px black" }}>{selectedTrail.trail_name}</Card.Title>
-                        <Card.Text>
-                            <div>
-                                <span style={{ backgroundColor: difficultyColor, borderRadius: "30px", color: "white", padding: "3px 20px" }}>
-                                    {selectedTrail.difficulty}
-                                </span>
-                                &nbsp;&nbsp;
-                                <span style={{ color: "#f5d24b", textShadow: "2px 2px black" }}>{"★".repeat(selectedTrailRating.avg_review)}</span>
-                                &nbsp;
-                                <span style={{ textShadow: "2px 2px black" }}>({selectedTrailRating.count})</span>
-                            </div>
-                            <div style={{ paddingTop: "5px", fontWeight: "700", textShadow: "2px 2px black" }}>
-                                {selectedTrail.park_name}
-                            </div>
-                        </Card.Text>
+                        <div>
+                            <span style={{ backgroundColor: difficultyColor, borderRadius: "30px", color: "white", padding: "3px 20px" }}>
+                                {selectedTrail.difficulty}
+                            </span>
+                            &nbsp;&nbsp;
+                            <span style={{ color: "#f5d24b", textShadow: "2px 2px black" }}>{"★".repeat(selectedTrailRating.avg_review)}</span>
+                            &nbsp;
+                            <span style={{ textShadow: "2px 2px black" }}>({selectedTrailRating.count})</span>
+                        </div>
+                        <div style={{ paddingTop: "5px", fontWeight: "700", textShadow: "2px 2px black" }}>
+                            {selectedTrail.park_name}
+                        </div>
                         <Button className="shadow-none" variant="light" onClick={(e) => {
                             window.open(`https://www.google.com/maps/search/${selectedTrail.location}`, "_blank");
                         }} >

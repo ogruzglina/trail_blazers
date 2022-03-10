@@ -39,7 +39,7 @@ function App() {
       return response
     }
     await fetchData()
-  }, [selectedId])
+  }, [selectedId, reviewData])
 
   useEffect(async () => {
     async function fetchData() {
@@ -49,7 +49,7 @@ function App() {
       return response
     }
     await fetchData()
-  }, [selectedId])
+  }, [selectedId, hikerData])
 
   const trails = trailData.trails;
   const ratingData = trailData.rating;
