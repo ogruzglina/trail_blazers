@@ -32,25 +32,23 @@ function Tile({ trailData, setSearch }) {
         <div className="tile-container">
             <Card className="trail-card" onClick={clearSearch}>
                 <Link to={`/review/${trailData.id}`} style={{ textDecoration: "none", color: "black" }}>
-                    <Card.Img variant="top" src={trailData.trail_picture} style={{height: "200px"}} />
+                    <Card.Img variant="top" src={trailData.trail_picture} style={{ height: "200px" }} />
                     <Card.Body>
                         <Card.Title>{trailData.trail_name}</Card.Title>
-                        <Card.Text>
-                            <div>
-                                {trailData.park_name}
-                            </div>
-                            <div>
-                                {location}
-                            </div>
-                            <div>
-                                <span style={{ backgroundColor: difficultyColor, borderRadius: "30px", color: "white", padding: "3px 20px" }}>
-                                    {trailData.difficulty}
-                                </span>
-                            </div>
-                            <div>
-                                Length: {trailData.length} mi &nbsp; • &nbsp; Est. {duration}
-                            </div>
-                        </Card.Text>
+                        <div>
+                            {trailData.park_name}
+                        </div>
+                        <div>
+                            {location}
+                        </div>
+                        <div>
+                            <span style={{ backgroundColor: difficultyColor, borderRadius: "30px", color: "white", padding: "3px 20px" }}>
+                                {trailData.difficulty}
+                            </span>
+                        </div>
+                        <div>
+                            Length: {trailData.length} mi &nbsp; • &nbsp; Est. {duration}
+                        </div>
                     </Card.Body>
                 </Link>
             </Card>
