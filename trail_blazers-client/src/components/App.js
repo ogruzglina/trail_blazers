@@ -5,7 +5,6 @@ import ReviewPage from "./ReviewPage"
 
 function App() {
   const [trailData, setTrailData] = useState([])
-  const [hikerData, setHikerData] = useState([])
   const [allHikers, setAllHikers] = useState([])
   const [search, setSearch] = useState("");
 
@@ -42,10 +41,6 @@ function App() {
     ratingData.filter(rating => rating.trail_id === trail.id)
   );
 
-  function handleHiker(newHiker) {
-    setHikerData([...allHikers, newHiker])
-  }
-
   return (
     <Switch>
       <Route exact path="/">
@@ -58,9 +53,7 @@ function App() {
       <Route path="/review/:id">
         <ReviewPage
           trailData={trailData}
-          setHikerData={setHikerData}
           allHikers={allHikers}
-          handleHiker={handleHiker}
         />
       </Route>
     </Switch>
