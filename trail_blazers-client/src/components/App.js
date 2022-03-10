@@ -8,7 +8,6 @@ function App() {
   const [reviewData, setReviewData] = useState([])
   const [hikerData, setHikerData] = useState([])
   const [allHikers, setAllHikers] = useState([])
-  const [selectedId, setSelectedId] = useState("")
   const [search, setSearch] = useState("");
 
   useEffect(async () => {
@@ -30,26 +29,6 @@ function App() {
     }
     await fetchData()
   }, [])
-
-  useEffect(async () => {
-    async function fetchData() {
-      let request = await fetch(`http://localhost:9292/reviews/${selectedId}`)
-      let response = await request.json()
-      setReviewData(response)
-      return response
-    }
-    await fetchData()
-  }, [selectedId])
-
-  useEffect(async () => {
-    async function fetchData() {
-      let request = await fetch(`http://localhost:9292/hikers/${selectedId}`)
-      let response = await request.json()
-      setHikerData(response)
-      return response
-    }
-    await fetchData()
-  }, [selectedId])
 
   const trails = trailData.trails;
   const ratingData = trailData.rating;
@@ -75,14 +54,20 @@ function App() {
   return (
     <Switch>
       <Route exact path="/">
-        <Home trailData={filteredTrailsData} onSearch={setSearch} setSearch={setSearch} />
+        <Home
+          trailData={filteredTrailsData}
+          onSearch={setSearch}
+          setSearch={setSearch}
+        />
       </Route>
       <Route path="/review/:id">
-        <ReviewPage trailData={trailData}
+        <ReviewPage
+          trailData={trailData}
           reviewData={reviewData}
-          setSelectedId={setSelectedId}
-          handlePost={handlePost}
+          setReviewData={setReviewData}
+          setHikerData={setHikerData}
           allHikers={allHikers}
+          handlePost={handlePost}
           handleHiker={handleHiker}
         />
       </Route>
