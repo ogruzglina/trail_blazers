@@ -92,10 +92,10 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
         if (!sortedReviewData) return null
         data = sortedReviewData
     }
-    let reviews = data.map((review, index) => {
+    let reviews = data.map(review => {
         let dateSplit = review.created_at.split(/[-T]/)
         let created_at = `${dateSplit[1]}/${dateSplit[2]}/${dateSplit[0]}`
-        return <Review key={review.id} userName={hikerArray[index].name} userImage={hikerArray[index].picture} userRating={review.rating} userComment={review.comment} created_at={created_at} />
+        return <Review key={review.id} userName={hikerArray.find(hiker => hiker.id === review.hiker_id).name} userImage={hikerArray.find(hiker => hiker.id === review.hiker_id).picture} userRating={review.rating} userComment={review.comment} created_at={created_at} />
     })
 
     function handleClose() {
