@@ -39,7 +39,8 @@ function App() {
       return response
     }
     await fetchData()
-  }, [selectedId, reviewData])
+    // replies on reviewData but infinitely fetches
+  }, [selectedId])
 
   useEffect(async () => {
     async function fetchData() {
@@ -49,7 +50,7 @@ function App() {
       return response
     }
     await fetchData()
-  }, [selectedId, hikerData])
+  }, [selectedId])
 
   const trails = trailData.trails;
   const ratingData = trailData.rating;
