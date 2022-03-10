@@ -152,7 +152,7 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
             <div>
                 <Card className="text-white" border="light">
                     <Card.Img style={{ height: "500px", paddingLeft: "200px", paddingRight: "200px" }} src={selectedTrail.trail_picture} alt="trail-img" />
-                    <Card.ImgOverlay style={{ height: "200px", transform: "translate(15%, 140%" }}>
+                    <Card.ImgOverlay style={{ height: "200px", transform: "translate(16%, 145%" }}>
                         <Card.Title style={{ fontSize: "30pt", fontWeight: "700", textShadow: "4px 4px black" }}>{selectedTrail.trail_name}</Card.Title>
                         <div>
                             <span style={{ backgroundColor: difficultyColor, borderRadius: "30px", color: "white", padding: "3px 20px" }}>
