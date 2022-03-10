@@ -39,7 +39,6 @@ function App() {
       return response
     }
     await fetchData()
-    // relies on reviewData but infinitely fetches
   }, [selectedId])
 
   useEffect(async () => {
