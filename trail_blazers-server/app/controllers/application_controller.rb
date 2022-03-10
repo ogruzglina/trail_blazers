@@ -45,7 +45,7 @@ class ApplicationController < Sinatra::Base
     t_reviews = Trail.trail_reviews(trail_id)
 
     if sort == nil
-      t_reviews.to_json
+      Hiker.hikers_with_reviews(t_reviews).to_json
     else
       sorted_reviews = case sort
         when "newest"
@@ -57,7 +57,7 @@ class ApplicationController < Sinatra::Base
         when "lowest"
           t_reviews.order(rating: :asc)
         end
-      sorted_reviews.to_json
+        Hiker.hikers_with_reviews(sorted_reviews).to_json
     end
   end
 
