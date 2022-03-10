@@ -8,21 +8,10 @@ import TrailOverlay from "./TrailOverlay"
 import TrailInfo from "./TrailInfo"
 import TrailReviewInfo from "./TrailReviewInfo"
 
-function ReviewPage({ trailData, reviewData, allHikers, handlePost, handleHiker, setReviewData, setHikerData }) {
+function ReviewPage({ trailData, allHikers, handleHiker, setHikerData }) {
     const [sort, setSort] = useState('default');
-    const [sortedReviewData, setSortedReviewData] = useState(reviewData);
-
+    const [sortedReviewData, setSortedReviewData] = useState([]);
     const { id } = useParams()
-
-    useEffect(async () => {
-        async function fetchData() {
-            let request = await fetch(`http://localhost:9292/reviews/${id}`)
-            let response = await request.json()
-            setReviewData(response)
-            return response
-        }
-        await fetchData()
-    }, [id])
 
     useEffect(async () => {
         async function fetchData() {
@@ -36,12 +25,10 @@ function ReviewPage({ trailData, reviewData, allHikers, handlePost, handleHiker,
 
     useEffect(async () => {
         async function fetchData() {
-            if (sort !== 'default') {
-                let request = await fetch(`http://localhost:9292/reviews/${id}/${sort}`)
-                let response = await request.json()
-                setSortedReviewData(response)
-                return response
-            }
+            let request = await fetch(`http://localhost:9292/reviews/${id}/${sort}`)
+            let response = await request.json()
+            setSortedReviewData(response)
+            return response
         }
         await fetchData()
     }, [sort])
@@ -56,14 +43,8 @@ function ReviewPage({ trailData, reviewData, allHikers, handlePost, handleHiker,
 
     let difficulty = selectedTrail.difficulty
 
-    let data = [];
-    if (sort === 'default') {
-        data = reviewData;
-    } else {
-        if (!sortedReviewData) return null
-        data = sortedReviewData
-    }
-    let reviews = data.map(review => {
+    if (!sortedReviewData) return null
+    let reviews = sortedReviewData.map(review => {
         let dateSplit = review[0].created_at.split(/[-T]/)
         let created_at = `${dateSplit[1]}/${dateSplit[2]}/${dateSplit[0]}`
         return <Review
@@ -75,6 +56,10 @@ function ReviewPage({ trailData, reviewData, allHikers, handlePost, handleHiker,
             created_at={created_at}
         />
     })
+
+    function handlePost(newPost) {
+        setSortedReviewData([...sortedReviewData, newPost])
+    }
 
     return (
         <div>
