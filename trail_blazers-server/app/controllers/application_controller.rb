@@ -37,7 +37,7 @@ class ApplicationController < Sinatra::Base
     hiker.to_json
   end
 
-  get "/reviews/:trail_id/?:sort?" do # ?:sort? -it's an optional parametr
+  get "/reviews/:trail_id/?:sort?" do 
     sort = params[:sort]
     trail_id = params[:trail_id]
 
