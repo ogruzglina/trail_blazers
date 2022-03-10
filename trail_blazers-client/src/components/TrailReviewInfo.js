@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
 import { useState } from "react"
 
-function TrailReviewInfo({ id, selectedTrailRating, handleHiker, handlePost, allHikers, sort, setSort }) {
+function TrailReviewInfo({ id, selectedTrailRating, handlePost, allHikers, sort, setSort }) {
     const [showModal, setShowModal] = useState(false)
     const [name, setName] = useState("")
     const [image, setImage] = useState("")
@@ -44,7 +44,6 @@ function TrailReviewInfo({ id, selectedTrailRating, handleHiker, handlePost, all
             })
         })
             .then(res => res.json())
-            .then(data => handleHiker(data))
 
         setName("")
         setImage("")
@@ -99,7 +98,8 @@ function TrailReviewInfo({ id, selectedTrailRating, handleHiker, handlePost, all
                         </table>
                         <br />
                         <div>
-                            <b>Sort by:</b> <select style={{ outline: "none", borderStyle: "none", textAlign: "center", color: "#428a13" }} name="correctIndex" value={sort} onChange={e => setSort(e.target.value)}>
+                            <b>Sort by:</b> 
+                            <select style={{ outline: "none", borderStyle: "none", textAlign: "center", color: "#428a13" }} name="correctIndex" value={sort} onChange={e => setSort(e.target.value)}>
                                 <option value='default'>Default</option>
                                 <option value='newest'>Newest First</option>
                                 <option value='oldest'>Oldest First</option>

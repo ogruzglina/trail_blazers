@@ -8,20 +8,10 @@ import TrailOverlay from "./TrailOverlay"
 import TrailInfo from "./TrailInfo"
 import TrailReviewInfo from "./TrailReviewInfo"
 
-function ReviewPage({ trailData, allHikers, handleHiker, setHikerData }) {
+function ReviewPage({ trailData, allHikers }) {
     const [sort, setSort] = useState('default');
     const [sortedReviewData, setSortedReviewData] = useState([]);
     const { id } = useParams()
-
-    useEffect(async () => {
-        async function fetchData() {
-            let request = await fetch(`http://localhost:9292/hikers/${id}`)
-            let response = await request.json()
-            setHikerData(response)
-            return response
-        }
-        await fetchData()
-    }, [id])
 
     useEffect(async () => {
         async function fetchData() {
@@ -83,7 +73,6 @@ function ReviewPage({ trailData, allHikers, handleHiker, setHikerData }) {
                 <TrailReviewInfo
                     id={id}
                     selectedTrailRating={selectedTrailRating}
-                    handleHiker={handleHiker}
                     handlePost={handlePost}
                     allHikers={allHikers}
                     sort={sort}
