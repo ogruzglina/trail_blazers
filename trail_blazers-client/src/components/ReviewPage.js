@@ -10,7 +10,7 @@ import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import Review from "./Review"
 import logo from "./logo.png"
 
-function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId, handlePost, handleHiker }) {
+function ReviewPage({ trailData, reviewData, allHikers, setSelectedId, handlePost, handleHiker }) {
     const [showModal, setShowModal] = useState(false)
     const [name, setName] = useState("")
     const [image, setImage] = useState("")
@@ -24,10 +24,12 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
 
     useEffect(async () => {
         async function fetchData() {
+            if (sort != 'default') {
             let request = await fetch(`http://localhost:9292/reviews/${id}/${sort}`)
             let response = await request.json()
             setSortedReviewData(response)
             return response
+            }
         }
         await fetchData()
     }, [sort])
@@ -80,11 +82,6 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
         attraction = `has a ${selectedTrail.attraction.toLowerCase()} and`
     }
 
-    const hikers = hikerData.hikers
-
-    if (!hikers) return null
-    const hikerArray = hikers.map(hiker => hiker)
-
     let data = [];
     if (sort === 'default') {
         data = reviewData;
@@ -92,10 +89,17 @@ function ReviewPage({ trailData, reviewData, hikerData, allHikers, setSelectedId
         if (!sortedReviewData) return null
         data = sortedReviewData
     }
-    let reviews = data.map(review => {
-        let dateSplit = review.created_at.split(/[-T]/)
+    let reviews = data.map( review => {
+        let dateSplit = review[0].created_at.split(/[-T]/)
         let created_at = `${dateSplit[1]}/${dateSplit[2]}/${dateSplit[0]}`
-        return <Review key={review.id} userName={hikerArray.find(hiker => hiker.id === review.hiker_id).name} userImage={hikerArray.find(hiker => hiker.id === review.hiker_id).picture} userRating={review.rating} userComment={review.comment} created_at={created_at} />
+        return <Review
+                    key = { review[0].id }
+                    userName = { review[1].name}
+                    userImage = { review[1].picture }
+                    userRating = { review[0].rating }
+                    userComment = { review[0].comment }
+                    created_at = { created_at }
+                />
     })
 
     function handleClose() {

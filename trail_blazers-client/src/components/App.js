@@ -81,7 +81,6 @@ function App() {
       <Route path="/review/:id">
         <ReviewPage trailData={trailData}
           reviewData={reviewData}
-          hikerData={hikerData}
           setSelectedId={setSelectedId}
           handlePost={handlePost}
           allHikers={allHikers}
