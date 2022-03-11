@@ -2,7 +2,7 @@ import Navbar from "react-bootstrap/Navbar"
 import Container from "react-bootstrap/Container"
 import AddNewReview from "./AddNewReview"
 
-function TrailReviewInfo({ id, handlePost, allHikers, selectedTrailRating, sort, setSort }) {
+function TrailReviewInfo({ id, handlePost, selectedTrailRating, sort, setSort }) {
     return (
         <div>
             <div style={{ paddingRight: "200px", paddingLeft: "200px", paddingTop: "20px" }}>
@@ -72,7 +72,6 @@ function TrailReviewInfo({ id, handlePost, allHikers, selectedTrailRating, sort,
                     <AddNewReview
                         id={id}
                         handlePost={handlePost}
-                        allHikers={allHikers}
                     />
                 </div>
             </div>
