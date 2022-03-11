@@ -5,7 +5,7 @@ import ReviewPage from "./ReviewPage"
 
 function App() {
   const [trailData, setTrailData] = useState([])
-  const [allHikers, setAllHikers] = useState([])
+  
   const [search, setSearch] = useState("");
 
   useEffect(async () => {
@@ -13,16 +13,6 @@ function App() {
       let request = await fetch("http://localhost:9292/trails")
       let response = await request.json()
       setTrailData(response)
-      return response
-    }
-    await fetchData()
-  }, [])
-
-  useEffect(async () => {
-    async function fetchData() {
-      let request = await fetch("http://localhost:9292/hikers")
-      let response = await request.json()
-      setAllHikers(response)
       return response
     }
     await fetchData()
@@ -51,10 +41,7 @@ function App() {
         />
       </Route>
       <Route path="/review/:id">
-        <ReviewPage
-          trailData={trailData}
-          allHikers={allHikers}
-        />
+        <ReviewPage trailData={trailData} />
       </Route>
     </Switch>
   )

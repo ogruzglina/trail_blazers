@@ -8,7 +8,7 @@ import TrailOverlay from "./TrailOverlay"
 import TrailInfo from "./TrailInfo"
 import TrailReviewInfo from "./TrailReviewInfo"
 
-function ReviewPage({ trailData, allHikers }) {
+function ReviewPage({ trailData }) {
     const [sort, setSort] = useState('default');
     const [sortedReviewData, setSortedReviewData] = useState([]);
     const { id } = useParams()
@@ -74,7 +74,6 @@ function ReviewPage({ trailData, allHikers }) {
                     id={id}
                     selectedTrailRating={selectedTrailRating}
                     handlePost={handlePost}
-                    allHikers={allHikers}
                     sort={sort}
                     setSort={setSort}
                 />

@@ -1,14 +1,25 @@
 import Button from "react-bootstrap/Button"
 import Modal from "react-bootstrap/Modal"
 import Form from "react-bootstrap/Form"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-function AddNewReview({ id, handlePost, allHikers }) {
+function AddNewReview({ id, handlePost }) {
     const [showModal, setShowModal] = useState(false)
     const [name, setName] = useState("")
     const [image, setImage] = useState("")
     const [rating, setRating] = useState("")
     const [comment, setComment] = useState("")
+    const [numberOfHikers, setNumberOfHikers] = useState([])
+
+    useEffect(async () => {
+        async function fetchData() {
+          let request = await fetch("http://localhost:9292/hikers")
+          let response = await request.json()
+          setNumberOfHikers(response)
+          return response
+        }
+        await fetchData()
+      }, [name])
 
     function handleClose() {
         setShowModal(showModal => !showModal)
@@ -18,13 +29,11 @@ function AddNewReview({ id, handlePost, allHikers }) {
         e.preventDefault()
         fetch(`http://localhost:9292/reviews/${id}`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 rating: e.target[2].value,
                 comment: e.target[3].value,
-                hiker_id: allHikers.length + 1,
+                hiker_id: numberOfHikers + 1,
                 trail_id: id
             })
         })
@@ -33,9 +42,7 @@ function AddNewReview({ id, handlePost, allHikers }) {
 
         fetch(`http://localhost:9292/hikers`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 name: e.target[0].value,
                 picture: e.target[1].value
@@ -53,7 +60,10 @@ function AddNewReview({ id, handlePost, allHikers }) {
 
     return (
         <div className="col" style={{ paddingTop: "50px" }}>
-            <Button className="shadow-none" style={{ backgroundColor: "seagreen", borderColor: "seagreen" }} onClick={() => setShowModal(true)}>Write a review</Button>
+            <Button className="shadow-none" 
+                style={{ backgroundColor: "seagreen", borderColor: "seagreen" }} 
+                onClick={() => setShowModal(true)}
+            >Write a review</Button>
             <Modal
                 size="md"
                 centered
