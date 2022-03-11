@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal"
 import Form from "react-bootstrap/Form"
 import { useState, useEffect } from "react"
 
-function AddNewReview({ id, handlePost }) {
+function AddNewReview({ id, setPost }) {
     const [showModal, setShowModal] = useState(false)
     const [name, setName] = useState("")
     const [image, setImage] = useState("")
@@ -13,13 +13,13 @@ function AddNewReview({ id, handlePost }) {
 
     useEffect(async () => {
         async function fetchData() {
-          let request = await fetch("http://localhost:9292/hikers")
-          let response = await request.json()
-          setNumberOfHikers(response)
-          return response
+            let request = await fetch("http://localhost:9292/hikers")
+            let response = await request.json()
+            setNumberOfHikers(response)
+            return response
         }
         await fetchData()
-      }, [name])
+    }, [name])
 
     function handleClose() {
         setShowModal(showModal => !showModal)
@@ -38,7 +38,9 @@ function AddNewReview({ id, handlePost }) {
             })
         })
             .then(res => res.json())
-            .then(data => handlePost(data))
+            .then(data => {
+                setPost(post => !post)
+            })
 
         fetch(`http://localhost:9292/hikers`, {
             method: "POST",
@@ -60,8 +62,8 @@ function AddNewReview({ id, handlePost }) {
 
     return (
         <div className="col" style={{ paddingTop: "50px" }}>
-            <Button className="shadow-none" 
-                style={{ backgroundColor: "seagreen", borderColor: "seagreen" }} 
+            <Button className="shadow-none"
+                style={{ backgroundColor: "seagreen", borderColor: "seagreen" }}
                 onClick={() => setShowModal(true)}
             >Write a review</Button>
             <Modal

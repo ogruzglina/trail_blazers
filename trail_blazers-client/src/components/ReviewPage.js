@@ -11,6 +11,7 @@ import TrailReviewInfo from "./TrailReviewInfo"
 function ReviewPage({ trailData }) {
     const [sort, setSort] = useState('default');
     const [sortedReviewData, setSortedReviewData] = useState([]);
+    const [post, setPost] = useState(false)
     const { id } = useParams()
 
     useEffect(async () => {
@@ -21,7 +22,7 @@ function ReviewPage({ trailData }) {
             return response
         }
         await fetchData()
-    }, [sort])
+    }, [sort, post])
 
     const trails = trailData.trails
 
@@ -47,10 +48,6 @@ function ReviewPage({ trailData }) {
         />
     })
 
-    function handlePost(newPost) {
-        setSortedReviewData([...sortedReviewData, newPost])
-    }
-
     return (
         <div>
             <Navbar>
@@ -73,9 +70,9 @@ function ReviewPage({ trailData }) {
                 <TrailReviewInfo
                     id={id}
                     selectedTrailRating={selectedTrailRating}
-                    handlePost={handlePost}
                     sort={sort}
                     setSort={setSort}
+                    setPost={setPost}
                 />
                 <div style={{ paddingRight: "200px", paddingLeft: "200px", paddingTop: "20px" }}><hr /></div>
                 <div style={{ paddingRight: "200px", paddingLeft: "200px" }}>
