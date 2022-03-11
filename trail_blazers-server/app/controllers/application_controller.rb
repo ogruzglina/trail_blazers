@@ -28,8 +28,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/hikers" do
-    hikers = Hiker.all
-    hikers.to_json
+    Hiker.count.to_json
   end
 
   post "/hikers" do
