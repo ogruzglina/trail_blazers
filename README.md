@@ -3,8 +3,8 @@ This website gives you an opportunity to find a trail, look at the trail informa
 <img src="trail_blazers-client/src/assets/Trail Blazers.gif" width="500">
 
 ## Technologies Used
- - Front-end: React, CSS, MUI 
- - Back-end: Ruby with Senatra 
+ - Front-end: React.js, CSS, MUI 
+ - Back-end: Ruby with Sinatra 
  - Database: sqlite
 
 ## Authors
